@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Meme Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <h2>Meme Generator</h2>
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <button class="nav-btn">Gallery</button>
+                </li>
+                <li>
+                    <button class="nav-btn">Saved</button>
+                </li>
+                <li>
+                    <button class="nav-btn">Randomize</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="meme-gallery-page">
+        <main>
+            <section class="search-and-filters">
+                <div class="search-bar-container">
+                    <input type="text" class="search-meme-input" placeholder="Search">
+                </div>
+                <div class="filter-tag-container"></div>
+            </section>
+            <section class="meme-container">
+                <article class="meme-image">
+                    <img src="img/001.jpg" alt="funny meme">
+                </article>
+                <article class="meme-image">
+                    <img src="img/002.jpg" alt="cute meme">
+                </article>
+            </section>
+        </main>
+    </section>
+    <section class="meme-editor-page">
+        <main>
+            <canvas class="meme-editor-canvas" width="600" height="450"></canvas>
+
+            <section class="editor-tools">
+                <input type="text" class="meme-text-input" placeholder="Add Text Here">
+
+                <div class="input-editors-container">
+                    <button class="btn-editor btn-add-input"></button>
+                    <button class="btn-editor btn-delete-input"></button>
+                </div>
+                <div class="font-editors-container">
+                    <button class="btn-font stroke-color"></button>
+                    <button class="btn-font fill-color"></button>
+                </div>
+                <div class="meme-action-container">
+                    <a href="#" class="btn btn-save "></a>
+                    <a href="#" class="btn btn-share"></a>
+                    <a href="#" class="btn btn-download"></a>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <script src="/js/services/util.service.js"></script>
+    <script src="/js/services/storage.service.js"></script>
+    <script src="/js/services/meme.service.js"></script>
+    <script src="/js/controllers/gallery.controller.js"></script>
+    <script src="/js/controllers/editor.controller.js"></script>
+</body>
+
+</html>
