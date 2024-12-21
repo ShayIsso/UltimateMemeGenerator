@@ -32,3 +32,7 @@ function _createMeme(imgId) {
         ]
     }
 }
+
+function setLineText(txt) {
+    gMeme.lines[0].txt = txt
+}

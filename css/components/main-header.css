@@ -1,0 +1,15 @@
+.main-header {
+    /* max-width: 1250px; */
+    margin: 0.625rem;
+    background: linear-gradient(to left, #33be6d, #0c98b9);
+    height: 4.75rem;
+    font-size: 1.3125em;
+    border-radius: 2.5rem;
+}
+
+.main-header > * {
+    margin: 1.4em 0 1.4em
+}
+.main-header .logo {
+    margin-left: 5.95em;
+}

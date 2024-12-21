@@ -49,3 +49,8 @@ function drawText(line) {
 
     gCtx.fillText(txt, x, y)
 }
+
+function onSetLineText(txt) {
+    setLineText(txt.value)
+    renderMeme()
+}

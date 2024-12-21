@@ -1,0 +1,23 @@
+.main-nav {
+    max-width: 500px;
+    margin-right: 11.66em;
+}
+
+.main-nav .navigator {
+    gap: 1.43em;
+}
+
+.main-nav .nav-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-family: Poppins-Medium, sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 350ms ease-out;
+}
+
+.main-nav .nav-btn:hover {
+    opacity: .8;
+}
