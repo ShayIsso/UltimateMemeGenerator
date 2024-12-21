@@ -9,8 +9,8 @@
 </head>
 
 <body onload="onInit()">
-    <header class="main-header flex space-evenly">
-        <h2>Meme Generator</h2>
+    <header class="main-header flex space-between">
+        <div class="logo">Meme Generator</div>
         <nav class="main-nav">
             <ul class="navigator flex clean-list">
                 <li><button class="nav-btn">Gallery</button></li>
@@ -38,13 +38,13 @@
         </main>
     </section>
     <section class="meme-editor-page">
-        <main>
+        <main class="editor-layout flex">
             <div class="canvas-container">
                 <canvas class="meme-editor-canvas" width="600" height="450"></canvas>
             </div>
 
             <section class="editor-tools">
-                <input type="text" class="meme-text-input" placeholder="Add Text Here">
+                <input type="text" class="meme-text-input" placeholder="Add Text Here" oninput="onSetLineText(this)">
 
                 <div class="input-editors-container">
                     <button class="btn-editor btn-add-input"></button>

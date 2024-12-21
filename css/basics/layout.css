@@ -1,5 +1,9 @@
-.meme-container {
-    width: 80vw;
-    gap: 10px;
+/* editor-layout */ 
+
+.editor-layout {
+    gap: 3.125rem;
+    align-items: center;
+    max-width: min-content;
+    margin: 0 auto;
 }
 
