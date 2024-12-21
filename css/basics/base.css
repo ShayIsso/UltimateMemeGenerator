@@ -1,11 +1,12 @@
 * {
     box-sizing: border-box;
+    text-align: center;
 }
 
 body {
-
     font-size: 1rem;
-    margin: 10px;
+    background-color: rgb(19, 21, 30);
+    color: #FFF;
 }
 
 h1,
@@ -23,4 +24,15 @@ p {
 
 img {
     width: 100%;
+}
+
+canvas {
+    outline: 1px solid black;
+    display: block;
+    margin: auto;
+}
+
+.canvas-container {
+    width: 40vw;
+    margin: .5em auto;
 }
