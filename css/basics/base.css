@@ -1,38 +1,21 @@
 * {
     box-sizing: border-box;
-    text-align: center;
+}
+
+html {
+    color: #FFF;
+    font-family: Poppins-Medium, sans-serif;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
 body {
     font-size: 1rem;
-    background-color: rgb(19, 21, 30);
-    color: #FFF;
-}
+    margin: 0;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0 0 1em;
-}
-
-p {
-    margin: 0 0 1em;
+    background-color: var(--clr-primarybase)
 }
 
 img {
     width: 100%;
-}
-
-canvas {
-    outline: 1px solid black;
-    display: block;
-    margin: auto;
-}
-
-.canvas-container {
-    width: 40vw;
-    margin: .5em auto;
 }
