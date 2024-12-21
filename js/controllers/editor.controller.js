@@ -21,17 +21,31 @@ function resizeCanvas() {
 }
 
 function renderMeme() {
-    const { selectedImgId } = getMeme()
+    const { selectedImgId, lines } = getMeme()
     const imgData = getImgById(selectedImgId)
     
     const img = new Image()
     img.src = imgData.url
     img.onload = () => {
         drawImage(img)
+        drawText(lines[0])
     }
 }
 
 function drawImage(img) {
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function drawText(line) {
+    const { txt, size, color } = line
+
+    gCtx.font = `${size}px Arial`
+    gCtx.fillStyle = color
+    gCtx.textAlign = 'center'
+
+    const x = gElCanvas.width / 2
+    const y = 50
+
+    gCtx.fillText(txt, x, y)
 }
