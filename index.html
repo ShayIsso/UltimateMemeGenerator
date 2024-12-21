@@ -8,24 +8,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <header class="main-header">
+<body onload="onInit()">
+    <header class="main-header flex space-evenly">
         <h2>Meme Generator</h2>
         <nav class="main-nav">
-            <ul>
-                <li>
-                    <button class="nav-btn">Gallery</button>
-                </li>
-                <li>
-                    <button class="nav-btn">Saved</button>
-                </li>
-                <li>
-                    <button class="nav-btn">Randomize</button>
-                </li>
+            <ul class="navigator flex clean-list">
+                <li><button class="nav-btn">Gallery</button></li>
+                <li><button class="nav-btn">Saved</button></li>
+                <li><button class="nav-btn">Randomize</button></li>
             </ul>
         </nav>
     </header>
-    <section class="meme-gallery-page">
+    <section class="meme-gallery-page hidden">
         <main>
             <section class="search-and-filters">
                 <div class="search-bar-container">
@@ -33,7 +27,7 @@
                 </div>
                 <div class="filter-tag-container"></div>
             </section>
-            <section class="meme-container">
+            <section class="meme-container flex column">
                 <article class="meme-image">
                     <img src="img/001.jpg" alt="funny meme">
                 </article>
