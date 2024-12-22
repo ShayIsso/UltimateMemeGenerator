@@ -8,7 +8,7 @@ function renderGallery() {
     const imgs = getImgs()
     const strHtmls = imgs.map(img => `
         <article class="meme-image">
-            <img src="${img.url}" alt="funny meme" onclick="onImgSelect(${img.id})">
+            <img src="${img.url}" alt="funny meme" onclick="onImgSelect('${img.id}')">
         </article>
         `)
 

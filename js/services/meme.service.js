@@ -35,12 +35,10 @@ function _createMeme(imgId = gImgs[0].id) {
 
 function _createImgs() {
     for (let i = 1; i <= 25; i++) {
-        const formattedId = i < 10 ? `0${i}` : `${i}`;
         const url = `img/${i < 10 ? `00${i}` : `0${i}`}.jpg`;
 
         gImgs.push({
-            id: i,
-            formattedId: formattedId,
+            id: makeId(),
             url: url,
             keywords: ['funny', 'dance']
         });
