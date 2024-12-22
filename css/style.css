@@ -11,7 +11,7 @@
 /* COMPONENTS */
 @import url('/css/components/main-header.css');
 @import url('/css/components/main-nav.css');
-@import url('/css/components/container.css');
+@import url('/css/components/editor-tools.css');
 
 /* MQ */
 @import url('/css/setup/mq.css');

@@ -1,0 +1,10 @@
+.editor-tools {
+    gap: 1.25rem;
+}
+
+.editor-tools .meme-text-input {
+    height: 3.675rem;
+    width: 450px;
+    border: none;
+    border-radius: 1.75rem;
+}
