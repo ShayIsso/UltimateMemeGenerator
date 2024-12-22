@@ -2,28 +2,29 @@
 let gElCanvas
 let gCtx
 
-function onInit() {
+function initCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
-    window.onresize = resizeCanvas
-
-    renderMeme()
+    window.addEventListener('resize', resizeCanvas)
 }
-
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 
-    renderMeme()
+    const meme = getMeme()
+    if (meme) renderMeme()
 }
 
 function renderMeme() {
-    const { selectedImgId, lines } = getMeme()
+    const meme = getMeme()
+    if (!meme) return
+
+    const { selectedImgId, lines } = meme
     const imgData = getImgById(selectedImgId)
-    
+
     const img = new Image()
     img.src = imgData.url
     img.onload = () => {
@@ -40,7 +41,7 @@ function drawImage(img) {
 function drawText(line) {
     const { txt, size, color } = line
 
-    gCtx.font = `${size}px Arial`
+    gCtx.font = `800 ${size}px Poppins`
     gCtx.fillStyle = color
     gCtx.textAlign = 'center'
 
