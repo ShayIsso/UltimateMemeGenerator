@@ -36,7 +36,7 @@ function _createMeme(imgId = gImgs[0].id) {
 function _createImgs() {
     for (let i = 1; i <= 25; i++) {
         const urlNum = i < 10 ? `00${i}` : `0${i}`
-        const url = `Imgs/${urlNum}.jpg`;
+        const url = `./imgs/${urlNum}.jpg`;
 
         gImgs.push({
             id: makeId(),
