@@ -51,3 +51,9 @@ function onSetLineText(txt) {
     setLineText(txt.value)
     renderMeme()
 }
+
+function onDownloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg', 1.0)
+    elLink.href = imgContent
+    elLink.download  = 'my-meme.jpeg'
+}
