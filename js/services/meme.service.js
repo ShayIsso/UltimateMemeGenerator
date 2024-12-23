@@ -1,10 +1,19 @@
 'use strict';
 
 let gImgs = []
-let gMeme
+let gMeme = {
+    selectedImgId: 1,
+    selectedLineIdx: 0,
+    lines: [
+        {
+            txt: 'I sometimes eat Falafel',
+            size: 20,
+            color: 'red'
+        }
+    ]
+}
 
 _createImgs()
-_createMeme()
 
 function getMeme() {
     return gMeme
@@ -16,21 +25,6 @@ function getImgs() {
 
 function getImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
-}
-
-function _createMeme(imgId = gImgs[0].id) {
-    gMeme = {
-        selectedImgId: imgId,
-        selectedLineIdx: 0,
-        lines: [
-            {
-                txt: 'I sometimes eat Falafel',
-                size: 20,
-                color: 'red'
-            }
-        ]
-    }
-    return gMeme
 }
 
 function _createImgs() {
@@ -51,5 +45,5 @@ function setLineText(txt) {
 }
 
 function setImg(imgId) {
-   _createMeme(imgId)
+   gMeme.selectedImgId = imgId
 }

@@ -1,0 +1,7 @@
+/* meme-action-container */
+
+.meme-action-container, .font-editors-container,  .input-editors-container{
+    gap: 15px;
+    height: 50px;
+    justify-content: center;
+}

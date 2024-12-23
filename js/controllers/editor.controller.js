@@ -14,15 +14,11 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 
-    const meme = getMeme()
-    if (meme) renderMeme()
+    renderMeme()
 }
 
 function renderMeme() {
-    const meme = getMeme()
-    if (!meme) return
-
-    const { selectedImgId, lines } = meme
+    const { selectedImgId, lines } = gMeme
     const imgData = getImgById(selectedImgId)
 
     const img = new Image()

@@ -1,0 +1,39 @@
+.btn, .btn-font, .btn-editor {
+    display: flex;
+    padding-inline: 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    flex: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.btn-download {
+    background-color: chocolate;
+}
+
+.btn.btn-save {
+    background-color: rgb(100, 199, 100);
+}
+
+.btn.btn-share {
+    background-color: cornflowerblue;
+}
+
+.btn-font {
+    background-color: black;
+}
+
+.btn-editor {
+    background-color: lemonchiffon;
+}
+
+.btn-editor.btn-add-input {
+    background-color: green;
+}
+
+.btn-editor.btn-delete-input {
+    background-color: rgb(202, 50, 50);
+}
