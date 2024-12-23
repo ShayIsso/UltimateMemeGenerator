@@ -1,13 +1,19 @@
 'use strict';
 
 let gImgs = []
-let gMeme = {
-    selectedImgId: 1,
-    selectedLineIdx: 0,
-    lines: [_createLine()]
-}
+let gMeme 
 
+createMeme()
 _createImgs()
+
+
+function createMeme() {
+    gMeme = {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [_createLine()]
+    }
+}
 
 function getMeme() {
     return gMeme
@@ -71,6 +77,7 @@ function addLine() {
     const { lines } = gMeme
     const newLine = _createLine()
     lines.push(newLine)
+    gMeme.selectedLineIdx++
 }
 
 function switchLine() {

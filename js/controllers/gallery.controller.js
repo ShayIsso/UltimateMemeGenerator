@@ -16,6 +16,7 @@ function renderGallery() {
 }
 
 function onImgSelect(imgId) {
+    createMeme()
     setImg(imgId)
     togglePage('editor') 
     initCanvas()
