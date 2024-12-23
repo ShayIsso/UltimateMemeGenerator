@@ -9,3 +9,13 @@ function makeId(length = 6) {
 	}
 	return id
 }
+
+function togglePage(page) {
+	if (page === 'editor') {
+		document.querySelector('.meme-editor-page').classList.remove('hidden')
+		document.querySelector('.meme-gallery-page').classList.add('hidden')
+	} else if (page === 'gallery') {
+		document.querySelector('.meme-gallery-page').classList.remove('hidden')
+		document.querySelector('.meme-editor-page').classList.add('hidden')
+	}
+}

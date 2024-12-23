@@ -17,11 +17,10 @@ function renderGallery() {
 
 function onImgSelect(imgId) {
     setImg(imgId)
-    showEditorPage() 
+    togglePage('editor') 
     initCanvas()
 }
 
-function showEditorPage() {
-    document.querySelector('.meme-editor-page').classList.remove('hidden')
-    document.querySelector('.meme-gallery-page').classList.add('hidden')
+function onShowGalleryPage() {
+    togglePage('gallery')
 }
