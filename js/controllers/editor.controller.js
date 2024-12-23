@@ -36,23 +36,36 @@ function drawImage(img) {
 
 function drawText(lines) {
     let lineHeight = 50
-    lines.map((line) => {
+    lines.forEach((line) => {
         const { txt, size, fillColor, strokeColor } = line
-    
+        // const padding = 10
+
         gCtx.font = `800 ${size}px Poppins`
         gCtx.textAlign = 'center'
-    
+
         const x = gElCanvas.width / 2
         const y = lineHeight
-    
+
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
         gCtx.strokeStyle = strokeColor
     
         gCtx.strokeText(txt, x, y)
+        drawTextFrame(x, y, gCtx.measureText(txt))
         gCtx.fillText(txt, x, y)
-        lineHeight+=40
+        lineHeight+=50
     })
+}
+
+function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualBoundingBoxDescent }) {
+    const padding = 10
+    const txtHeight = actualBoundingBoxAscent + actualBoundingBoxDescent
+    const rectX = x - (txtWidth / 2) - padding
+    const rectY = y - actualBoundingBoxAscent - padding
+
+    gCtx.strokeStyle = 'black'
+
+    gCtx.strokeRect(rectX, rectY, txtWidth + (padding*2), txtHeight + (padding*2))
 }
 
 function onSetLineText(txt) {
