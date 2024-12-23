@@ -22,6 +22,10 @@
     background-color: cornflowerblue;
 }
 
+.btn-font {
+    background-color: black;
+}
+
 .btn-font.fill-color {
     background-color: blue;
 }

@@ -25,7 +25,7 @@ function renderMeme() {
     img.src = imgData.url
     img.onload = () => {
         drawImage(img)
-        drawText(lines[0])
+        drawText(lines)
     }
 }
 
@@ -34,21 +34,25 @@ function drawImage(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(line) {
-    const { txt, size, fillColor, strokeColor } = line
-
-    gCtx.font = `800 ${size}px Poppins`
-    gCtx.textAlign = 'center'
-
-    const x = gElCanvas.width / 2
-    const y = 50
-
-    gCtx.lineWidth = 2
-    gCtx.fillStyle = fillColor
-    gCtx.strokeStyle = strokeColor
-
-    gCtx.strokeText(txt, x, y)
-    gCtx.fillText(txt, x, y)
+function drawText(lines) {
+    let lineHeight = 50
+    lines.map((line) => {
+        const { txt, size, fillColor, strokeColor } = line
+    
+        gCtx.font = `800 ${size}px Poppins`
+        gCtx.textAlign = 'center'
+    
+        const x = gElCanvas.width / 2
+        const y = lineHeight
+    
+        gCtx.lineWidth = 2
+        gCtx.fillStyle = fillColor
+        gCtx.strokeStyle = strokeColor
+    
+        gCtx.strokeText(txt, x, y)
+        gCtx.fillText(txt, x, y)
+        lineHeight+=40
+    })
 }
 
 function onSetLineText(txt) {
@@ -79,4 +83,9 @@ function onSetFillStyle(elColor) {
 function setButtonBackgroundColor(color, type) {
     const button = document.querySelector(`.${type}-color`) 
     button.style.backgroundColor = color
+}
+
+function onChangeLineSize(diff) {
+    changeLineSize(diff)
+    renderMeme()
 }

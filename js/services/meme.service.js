@@ -10,7 +10,13 @@ let gMeme = {
             size: 25,
             fillColor: 'blue',
             strokeColor: 'black',
-        }
+        },
+        {
+            txt: 'I sometimes eat Jahnon',
+            size: 25,
+            fillColor: 'red',
+            strokeColor: 'yellow',
+        },
     ]
 }
 
@@ -57,4 +63,9 @@ function setStrokeStyle(newColor) {
 function setFillStyle(newColor) {
     const { lines, selectedLineIdx } = gMeme
     lines[selectedLineIdx].fillColor = newColor
+}
+
+function changeLineSize(diff) {
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].size += diff 
 }
