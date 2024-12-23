@@ -36,9 +36,8 @@ function drawImage(img) {
 
 function drawText(lines) {
     let lineHeight = 50
-    lines.forEach((line) => {
+    lines.forEach((line, idx) => {
         const { txt, size, fillColor, strokeColor } = line
-        // const padding = 10
 
         gCtx.font = `800 ${size}px Poppins`
         gCtx.textAlign = 'center'
@@ -51,7 +50,10 @@ function drawText(lines) {
         gCtx.strokeStyle = strokeColor
     
         gCtx.strokeText(txt, x, y)
-        drawTextFrame(x, y, gCtx.measureText(txt))
+        if (idx === gMeme.selectedLineIdx) {
+            drawTextFrame(x, y, gCtx.measureText(txt))
+        }
+
         gCtx.fillText(txt, x, y)
         lineHeight+=50
     })
@@ -64,7 +66,6 @@ function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualB
     const rectY = y - actualBoundingBoxAscent - padding
 
     gCtx.strokeStyle = 'black'
-
     gCtx.strokeRect(rectX, rectY, txtWidth + (padding*2), txtHeight + (padding*2))
 }
 
@@ -105,10 +106,12 @@ function onChangeLineSize(diff) {
 
 function onAddLine() {
     addLine()
+    setInputValue('meme-text')
     renderMeme()
 }
 
-function onSwitchLine() {
+function onSwitchLine() {    
     switchLine()
+    setInputValue('meme-text', gMeme)
     renderMeme()
 }

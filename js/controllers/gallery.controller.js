@@ -24,4 +24,5 @@ function onImgSelect(imgId) {
 
 function onShowGalleryPage() {
     togglePage('gallery')
+    setInputValue('meme-text')
 }
