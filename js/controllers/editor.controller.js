@@ -35,15 +35,19 @@ function drawImage(img) {
 }
 
 function drawText(line) {
-    const { txt, size, color } = line
+    const { txt, size, fillColor, strokeColor } = line
 
     gCtx.font = `800 ${size}px Poppins`
-    gCtx.fillStyle = color
     gCtx.textAlign = 'center'
 
     const x = gElCanvas.width / 2
     const y = 50
 
+    gCtx.lineWidth = 2
+    gCtx.fillStyle = fillColor
+    gCtx.strokeStyle = strokeColor
+
+    gCtx.strokeText(txt, x, y)
     gCtx.fillText(txt, x, y)
 }
 
@@ -56,4 +60,23 @@ function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg', 1.0)
     elLink.href = imgContent
     elLink.download  = 'my-meme.jpeg'
+}
+
+function onSetStrokeStyle(elColor) {
+    const newColor = elColor.value
+    setStrokeStyle(newColor)
+    setButtonBackgroundColor(newColor, 'stroke')
+    renderMeme()
+}
+
+function onSetFillStyle(elColor) {
+    const newColor = elColor.value
+    setFillStyle(newColor)
+    setButtonBackgroundColor(newColor, 'fill')
+    renderMeme()
+}
+
+function setButtonBackgroundColor(color, type) {
+    const button = document.querySelector(`.${type}-color`) 
+    button.style.backgroundColor = color
 }

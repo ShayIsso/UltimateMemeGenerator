@@ -45,8 +45,12 @@
                     <button class="btn-editor btn-delete-input">Delete</button>
                 </div>
                 <div class="font-editors-container flex">
-                    <button class="btn-font stroke-color">Stroke</button>
-                    <button class="btn-font fill-color">Fill</button>
+                    <button class="btn-font stroke-color">Stroke Color
+                        <input type="color" class="stroke-color-picker" oninput="onSetStrokeStyle(this)">
+                    </button>
+                    <button class="btn-font fill-color" input type="color">Fill Color
+                        <input type="color" class="fill-color-picker" oninput="onSetFillStyle(this)">
+                    </button>
                 </div>
                 <div class="meme-action-container flex">
                     <!-- <a href="#" class="btn btn-save">Save</a> -->
