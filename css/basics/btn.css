@@ -22,7 +22,11 @@
     background-color: cornflowerblue;
 }
 
-.btn-font {
+.btn-font.fill-color {
+    background-color: blue;
+}
+
+.btn-font.stroke-color {
     background-color: black;
 }
 
@@ -36,4 +40,18 @@
 
 .btn-editor.btn-delete-input {
     background-color: rgb(202, 50, 50);
+}
+
+/* stroke and fill colors */
+.stroke-color, .fill-color {
+    position: relative;
+}
+
+.stroke-color-picker, .fill-color-picker {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
 }
