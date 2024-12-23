@@ -27,7 +27,8 @@
 }
 
 .btn-font.fill-color {
-    background-color: blue;
+    color: black;
+    background-color: #FFF;
 }
 
 .btn-font.stroke-color {
@@ -35,7 +36,7 @@
 }
 
 .btn-editor {
-    background-color: lemonchiffon;
+    background-color: rgb(151, 136, 0);
 }
 
 .btn-editor.btn-add-input {

@@ -4,20 +4,7 @@ let gImgs = []
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 25,
-            fillColor: 'blue',
-            strokeColor: 'black',
-        },
-        {
-            txt: 'I sometimes eat Jahnon',
-            size: 25,
-            fillColor: 'red',
-            strokeColor: 'yellow',
-        },
-    ]
+    lines: [_createLine()]
 }
 
 _createImgs()
@@ -47,13 +34,22 @@ function _createImgs() {
     }
 }
 
+function _createLine() {
+    return {
+        txt: 'Add Text Here',
+        size: 25,
+        fillColor: 'white',
+        strokeColor: 'black',
+    }
+}
+
 function setLineText(txt) {
     const { selectedLineIdx } = gMeme
     gMeme.lines[selectedLineIdx].txt = txt
 }
 
 function setImg(imgId) {
-   gMeme.selectedImgId = imgId
+    gMeme.selectedImgId = imgId
 }
 
 function setStrokeStyle(newColor) {
@@ -68,7 +64,7 @@ function setFillStyle(newColor) {
 
 function changeLineSize(diff) {
     const { lines, selectedLineIdx } = gMeme
-    lines[selectedLineIdx].size += diff 
+    lines[selectedLineIdx].size += diff
 }
 
 function addLine() {
