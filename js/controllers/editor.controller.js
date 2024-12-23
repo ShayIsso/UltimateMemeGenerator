@@ -89,3 +89,13 @@ function onChangeLineSize(diff) {
     changeLineSize(diff)
     renderMeme()
 }
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+}

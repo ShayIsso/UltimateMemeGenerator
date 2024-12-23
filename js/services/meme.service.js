@@ -48,7 +48,8 @@ function _createImgs() {
 }
 
 function setLineText(txt) {
-    gMeme.lines[0].txt = txt
+    const { selectedLineIdx } = gMeme
+    gMeme.lines[selectedLineIdx].txt = txt
 }
 
 function setImg(imgId) {
@@ -68,4 +69,15 @@ function setFillStyle(newColor) {
 function changeLineSize(diff) {
     const { lines, selectedLineIdx } = gMeme
     lines[selectedLineIdx].size += diff 
+}
+
+function addLine() {
+    const { lines } = gMeme
+    const newLine = _createLine()
+    lines.push(newLine)
+}
+
+function switchLine() {
+    const { selectedLineIdx, lines } = gMeme
+    gMeme.selectedLineIdx = (selectedLineIdx < lines.length - 1) ? selectedLineIdx + 1 : 0
 }
