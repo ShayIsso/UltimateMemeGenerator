@@ -49,10 +49,14 @@ function drawText(lines, selectedLineIdx) {
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
         gCtx.strokeStyle = strokeColor
+
+        const { boxX, boxY, boxWidth, boxHeight } = getTextBoxSize(gCtx, txt, x, y)
+        updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight)
+
     
         gCtx.strokeText(txt, x, y)
         if (idx === selectedLineIdx) {
-            drawTextFrame(x, y, gCtx.measureText(txt), idx)
+            drawTextBox(idx, boxX, boxY, boxWidth, boxHeight)
         }
 
         gCtx.fillText(txt, x, y)
@@ -60,19 +64,25 @@ function drawText(lines, selectedLineIdx) {
     })
 }
 
-function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualBoundingBoxDescent }, idx) {
-    const padding = 10
-    const txtHeight = actualBoundingBoxAscent + actualBoundingBoxDescent
-    const rectX = x - (txtWidth / 2) - padding
-    const rectY = y - actualBoundingBoxAscent - padding
-    const rectWidth = txtWidth + (padding*2)
-    const rectHeight = txtHeight + (padding*2)
+function getTextBoxSize(gCtx, txt, x, y, padding = 10) {
+    const measure = gCtx.measureText(txt)
+    const txtWidth = measure.width
+    const txtHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent
 
+    return {
+        boxX: x - (txtWidth / 2) - padding,
+        boxY: y - measure.actualBoundingBoxAscent - padding,
+        boxWidth: txtWidth + (padding*2),
+        boxHeight: txtHeight + (padding*2)
+    }
+}
+
+function drawTextBox(idx, boxX, boxY, boxWidth, boxHeight) {
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
-    gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+    gCtx.strokeRect(boxX, boxY, boxWidth, boxHeight)
 
-    updateLineBoundingBox(idx, rectX, rectY, rectWidth, rectHeight)
+    updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight)
 }
 
 function onSetLineText(txt) {

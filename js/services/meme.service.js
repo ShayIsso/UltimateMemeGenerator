@@ -105,11 +105,11 @@ function switchLine() {
     gMeme.selectedLineIdx = (selectedLineIdx < lines.length - 1) ? selectedLineIdx + 1 : 0
 }
 
-function updateLineBoundingBox(idx, rectX, rectY, rectWidth, rectHeight) {
-    gMeme.lines[idx].lineWidth = rectWidth
-    gMeme.lines[idx].lineHeight = rectHeight
-    gMeme.lines[idx].lineX = rectX
-    gMeme.lines[idx].lineY = rectY
+function updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight) {
+    gMeme.lines[idx].lineWidth = boxWidth
+    gMeme.lines[idx].lineHeight = boxHeight
+    gMeme.lines[idx].lineX = boxX
+    gMeme.lines[idx].lineY = boxY
 }
 
 function setSelectedLineIdx(idx){ 
