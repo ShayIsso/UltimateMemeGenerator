@@ -112,7 +112,11 @@ function onChangeLineSize(diff) {
 
 function onAddLine() {
     addLine()
-    setInputValue('meme-text')
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteLine()
     renderMeme()
 }
 

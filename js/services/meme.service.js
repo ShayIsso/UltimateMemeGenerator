@@ -54,8 +54,11 @@ function _createLine() {
 }
 
 function setLineText(txt) {
-    const { selectedLineIdx } = gMeme
-    gMeme.lines[selectedLineIdx].txt = txt
+    const { lines, selectedLineIdx } = gMeme
+    if (!lines || lines.length <= 0){
+        return
+    } 
+    lines[selectedLineIdx].txt = txt
 }
 
 function setImg(imgId) {
@@ -82,6 +85,19 @@ function addLine() {
     const newLine = _createLine()
     lines.push(newLine)
     gMeme.selectedLineIdx++
+}
+
+function deleteLine() {
+    const { lines, selectedLineIdx } = gMeme
+
+    if (lines.length === 1) {
+        lines.splice(0, 1)
+        addLine()
+        gMeme.selectedLineIdx = 0
+    } else {
+        lines.splice(selectedLineIdx, 1)
+        gMeme.selectedLineIdx = Math.max(0, selectedLineIdx - 1)
+    }
 }
 
 function switchLine() {
