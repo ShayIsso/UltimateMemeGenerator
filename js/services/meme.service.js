@@ -46,6 +46,10 @@ function _createLine() {
         size: 25,
         fillColor: 'white',
         strokeColor: 'black',
+        lineWidth: 0,
+        lineHeight: 0,
+        lineX: 0,
+        lineY: 0,
     }
 }
 
@@ -83,4 +87,15 @@ function addLine() {
 function switchLine() {
     const { selectedLineIdx, lines } = gMeme
     gMeme.selectedLineIdx = (selectedLineIdx < lines.length - 1) ? selectedLineIdx + 1 : 0
+}
+
+function updateLineBoundingBox(idx, rectX, rectY, rectWidth, rectHeight) {
+    gMeme.lines[idx].lineWidth = rectWidth
+    gMeme.lines[idx].lineHeight = rectHeight
+    gMeme.lines[idx].lineX = rectX
+    gMeme.lines[idx].lineY = rectY
+}
+
+function setSelectedLineIdx(idx){ 
+    gMeme.selectedLineIdx = idx
 }

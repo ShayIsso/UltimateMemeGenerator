@@ -52,7 +52,7 @@ function drawText(lines, selectedLineIdx) {
     
         gCtx.strokeText(txt, x, y)
         if (idx === selectedLineIdx) {
-            drawTextFrame(x, y, gCtx.measureText(txt)/*, idx*/)
+            drawTextFrame(x, y, gCtx.measureText(txt), idx)
         }
 
         gCtx.fillText(txt, x, y)
@@ -72,12 +72,7 @@ function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualB
     gCtx.lineWidth = 2
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 
-    // const { lines } = gMeme
-
-    // lines[idx].lineWidth = rectWidth
-    // lines[idx].lineHeight = rectHeight
-    // lines[idx].lineX = rectX
-    // lines[idx].lineY = rectY
+    updateLineBoundingBox(idx, rectX, rectY, rectWidth, rectHeight)
 }
 
 function onSetLineText(txt) {
@@ -127,18 +122,19 @@ function onSwitchLine() {
     renderMeme()
 }
 
-// function onLineClick(ev) {
-//     const meme = getMeme()
-//     const { offsetX, offsetY } = ev
-//     const { lines } = meme
+function onLineClick(ev) {
+    const meme = getMeme()
+    const { offsetX, offsetY } = ev
+    const { lines } = meme
 
-//     const clickedLine = lines.find(({ lineX, lineY, lineWidth, lineHeight }) => {
-//       return offsetX >= lineX && offsetX <= lineX + lineWidth
-//         && offsetY >= lineY && offsetY <= lineY + lineHeight
-//     })
+    const clickedLineIdx = lines.findIndex(({ lineX, lineY, lineWidth, lineHeight }) => {
+      return offsetX >= lineX && offsetX <= lineX + lineWidth
+        && offsetY >= lineY && offsetY <= lineY + lineHeight
+    })
     
-//     if (clickedLine) {
-//         setInputValue('meme-text', getMeme())
-//         renderMeme()
-//     }
-// }    
+    if (clickedLineIdx !== -1) {
+        setSelectedLineIdx(clickedLineIdx)
+        setInputValue('meme-text', meme)
+        renderMeme()
+    }
+}    

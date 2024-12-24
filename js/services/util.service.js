@@ -21,14 +21,8 @@ function togglePage(page) {
 }
 
 function setInputValue(inputClass, meme) {
+	const line = meme && meme.lines && meme.lines[meme.selectedLineIdx]
 	const elInput = document.querySelector(`.${inputClass}-input`)
 
-	if (meme) {
-		const { lines, selectedLineIdx } = gMeme
-		const { txt } = lines[selectedLineIdx]
-
-		elInput.value = txt
-	} else {
-		elInput.value = ''
-	}
+	elInput.value = line ? line.txt : ''
 }
