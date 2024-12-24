@@ -1,6 +1,7 @@
 'use strict';
 let gElCanvas
 let gCtx
+const LINE_HEIGHT_STEP = 50
 
 function initCanvas() {
     gElCanvas = document.querySelector('canvas')
@@ -19,6 +20,8 @@ function resizeCanvas() {
 
 function renderMeme() {
     const meme = getMeme()
+    setInputValue('meme-text', meme)
+
     const { selectedImgId, lines, selectedLineIdx } = meme
     const imgData = getImgById(selectedImgId)
 
@@ -36,7 +39,7 @@ function drawImage(img) {
 }
 
 function drawText(lines, selectedLineIdx) {
-    let lineHeight = 50
+    let currentY = LINE_HEIGHT_STEP
     lines.forEach((line, idx) => {
         const { txt, size, fillColor, strokeColor } = line
 
@@ -44,7 +47,7 @@ function drawText(lines, selectedLineIdx) {
         gCtx.textAlign = 'center'
 
         const x = gElCanvas.width / 2
-        const y = lineHeight
+        const y = currentY
 
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
@@ -60,7 +63,7 @@ function drawText(lines, selectedLineIdx) {
         }
 
         gCtx.fillText(txt, x, y)
-        lineHeight+=50
+        currentY+=LINE_HEIGHT_STEP
     })
 }
 
@@ -132,7 +135,6 @@ function onDeleteLine() {
 
 function onSwitchLine() {    
     switchLine()
-    setInputValue('meme-text', getMeme())
     renderMeme()
 }
 
@@ -148,7 +150,6 @@ function onLineClick(ev) {
     
     if (clickedLineIdx !== -1) {
         setSelectedLineIdx(clickedLineIdx)
-        setInputValue('meme-text', meme)
         renderMeme()
     }
 }    
