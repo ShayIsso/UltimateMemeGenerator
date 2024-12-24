@@ -18,14 +18,15 @@ function resizeCanvas() {
 }
 
 function renderMeme() {
-    const { selectedImgId, lines } = gMeme
+    const meme = getMeme()
+    const { selectedImgId, lines, selectedLineIdx } = meme
     const imgData = getImgById(selectedImgId)
 
     const img = new Image()
     img.src = imgData.url
     img.onload = () => {
         drawImage(img)
-        drawText(lines)
+        drawText(lines, selectedLineIdx)
     }
 }
 
@@ -34,7 +35,7 @@ function drawImage(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(lines) {
+function drawText(lines, selectedLineIdx) {
     let lineHeight = 50
     lines.forEach((line, idx) => {
         const { txt, size, fillColor, strokeColor } = line
@@ -50,8 +51,8 @@ function drawText(lines) {
         gCtx.strokeStyle = strokeColor
     
         gCtx.strokeText(txt, x, y)
-        if (idx === gMeme.selectedLineIdx) {
-            drawTextFrame(x, y, gCtx.measureText(txt))
+        if (idx === selectedLineIdx) {
+            drawTextFrame(x, y, gCtx.measureText(txt)/*, idx*/)
         }
 
         gCtx.fillText(txt, x, y)
@@ -59,14 +60,24 @@ function drawText(lines) {
     })
 }
 
-function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualBoundingBoxDescent }) {
+function drawTextFrame(x, y, { width: txtWidth, actualBoundingBoxAscent, actualBoundingBoxDescent }, idx) {
     const padding = 10
     const txtHeight = actualBoundingBoxAscent + actualBoundingBoxDescent
     const rectX = x - (txtWidth / 2) - padding
     const rectY = y - actualBoundingBoxAscent - padding
+    const rectWidth = txtWidth + (padding*2)
+    const rectHeight = txtHeight + (padding*2)
 
     gCtx.strokeStyle = 'black'
-    gCtx.strokeRect(rectX, rectY, txtWidth + (padding*2), txtHeight + (padding*2))
+    gCtx.lineWidth = 2
+    gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+
+    // const { lines } = gMeme
+
+    // lines[idx].lineWidth = rectWidth
+    // lines[idx].lineHeight = rectHeight
+    // lines[idx].lineX = rectX
+    // lines[idx].lineY = rectY
 }
 
 function onSetLineText(txt) {
@@ -112,6 +123,22 @@ function onAddLine() {
 
 function onSwitchLine() {    
     switchLine()
-    setInputValue('meme-text', gMeme)
+    setInputValue('meme-text', getMeme())
     renderMeme()
 }
+
+// function onLineClick(ev) {
+//     const meme = getMeme()
+//     const { offsetX, offsetY } = ev
+//     const { lines } = meme
+
+//     const clickedLine = lines.find(({ lineX, lineY, lineWidth, lineHeight }) => {
+//       return offsetX >= lineX && offsetX <= lineX + lineWidth
+//         && offsetY >= lineY && offsetY <= lineY + lineHeight
+//     })
+    
+//     if (clickedLine) {
+//         setInputValue('meme-text', getMeme())
+//         renderMeme()
+//     }
+// }    
