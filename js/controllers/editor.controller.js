@@ -67,14 +67,14 @@ function drawText(lines, selectedLineIdx) {
         const { boxX, boxY, boxWidth, boxHeight } = getTextBoxSize(gCtx, txt, x, y, alignment)
         updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight)
 
-    
+
         gCtx.strokeText(txt, x, y)
         if (idx === selectedLineIdx) {
             drawTextBox(idx, boxX, boxY, boxWidth, boxHeight)
         }
 
         gCtx.fillText(txt, x, y)
-        currentY+=LINE_HEIGHT_STEP
+        currentY += LINE_HEIGHT_STEP
     })
 }
 
@@ -82,7 +82,7 @@ function getTextBoxSize(gCtx, txt, x, y, alignment, padding = 10) {
     const measure = gCtx.measureText(txt)
     const txtWidth = measure.width
     const txtHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent
-    
+
     let boxX
     switch (alignment) {
         case 'left':
@@ -98,8 +98,8 @@ function getTextBoxSize(gCtx, txt, x, y, alignment, padding = 10) {
     return {
         boxX: boxX,
         boxY: y - measure.actualBoundingBoxAscent - padding,
-        boxWidth: txtWidth + (padding*2),
-        boxHeight: txtHeight + (padding*2)
+        boxWidth: txtWidth + (padding * 2),
+        boxHeight: txtHeight + (padding * 2)
     }
 }
 
@@ -119,7 +119,7 @@ function onSetLineText(txt) {
 function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg', 1.0)
     elLink.href = imgContent
-    elLink.download  = 'my-meme.jpeg'
+    elLink.download = 'my-meme.jpeg'
 }
 
 function onSetStrokeStyle(elColor) {
@@ -137,7 +137,7 @@ function onSetFillStyle(elColor) {
 }
 
 function setButtonBackgroundColor(color, type) {
-    const button = document.querySelector(`.${type}-color`) 
+    const button = document.querySelector(`.${type}-color`)
     button.style.color = color
 }
 
@@ -156,7 +156,7 @@ function onDeleteLine() {
     renderMeme()
 }
 
-function onSwitchLine() {    
+function onSwitchLine() {
     switchLine()
     renderMeme()
 }
@@ -167,15 +167,13 @@ function onLineClick(ev) {
     const { lines } = meme
 
     const clickedLineIdx = lines.findIndex(({ lineX, lineY, lineWidth, lineHeight }) => {
-      return offsetX >= lineX && offsetX <= lineX + lineWidth
-        && offsetY >= lineY && offsetY <= lineY + lineHeight
+        return offsetX >= lineX && offsetX <= lineX + lineWidth
+            && offsetY >= lineY && offsetY <= lineY + lineHeight
     })
-    
-    if (clickedLineIdx !== -1) {
-        setSelectedLineIdx(clickedLineIdx)
-        renderMeme()
-    }
-}    
+
+    clickedLineIdx !== -1 ? setSelectedLineIdx(clickedLineIdx) : setSelectedLineIdx(-1)
+    renderMeme()
+}
 
 function onSetAlignment(align) {
     setAlignment(align)

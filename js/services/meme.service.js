@@ -1,7 +1,7 @@
 'use strict';
 
 let gImgs = []
-let gMeme 
+let gMeme
 
 createMeme()
 _createImgs()
@@ -56,9 +56,7 @@ function _createLine() {
 
 function setLineText(txt) {
     const { lines, selectedLineIdx } = gMeme
-    if (!lines || lines.length <= 0){
-        return
-    } 
+    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
     lines[selectedLineIdx].txt = txt
 }
 
@@ -68,24 +66,33 @@ function setImg(imgId) {
 
 function setStrokeStyle(newColor) {
     const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
     lines[selectedLineIdx].strokeColor = newColor
 }
 
 function setFillStyle(newColor) {
     const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
     lines[selectedLineIdx].fillColor = newColor
 }
 
 function changeLineSize(diff) {
     const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
     lines[selectedLineIdx].size += diff
+}
+
+function setAlignment(newAlignment) {
+    const { lines, selectedLineIdx } = gMeme
+    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    lines[selectedLineIdx].alignment = newAlignment
 }
 
 function addLine() {
     const { lines } = gMeme
     const newLine = _createLine()
     lines.push(newLine)
-    gMeme.selectedLineIdx++
+    gMeme.selectedLineIdx = lines.length - 1
 }
 
 function deleteLine() {
@@ -93,8 +100,7 @@ function deleteLine() {
 
     if (lines.length === 1) {
         lines.splice(0, 1)
-        addLine()
-        gMeme.selectedLineIdx = 0
+        gMeme.selectedLineIdx = -1
     } else {
         lines.splice(selectedLineIdx, 1)
         gMeme.selectedLineIdx = Math.max(0, selectedLineIdx - 1)
@@ -113,12 +119,6 @@ function updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight) {
     gMeme.lines[idx].lineY = boxY
 }
 
-function setSelectedLineIdx(idx){ 
+function setSelectedLineIdx(idx) {
     gMeme.selectedLineIdx = idx
-}
-
-
-function setAlignment(newAlignment) {
-    const { lines, selectedLineIdx } = gMeme
-    lines[selectedLineIdx].alignment = newAlignment
 }
