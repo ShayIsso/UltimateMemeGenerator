@@ -115,3 +115,9 @@ function updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight) {
 function setSelectedLineIdx(idx){ 
     gMeme.selectedLineIdx = idx
 }
+
+
+function setAlignment(newAlignment) {
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].alignment = newAlignment
+}

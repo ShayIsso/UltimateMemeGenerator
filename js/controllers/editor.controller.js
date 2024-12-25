@@ -41,19 +41,30 @@ function drawImage(img) {
 function drawText(lines, selectedLineIdx) {
     let currentY = LINE_HEIGHT_STEP
     lines.forEach((line, idx) => {
-        const { txt, size, fillColor, strokeColor } = line
+        const { txt, size, fillColor, strokeColor, alignment } = line
 
         gCtx.font = `800 ${size}px Poppins`
-        gCtx.textAlign = 'center'
+        gCtx.textAlign = alignment
 
-        const x = gElCanvas.width / 2
+        let x
+        switch (alignment) {
+            case 'left':
+                x = 20
+                break
+            case 'right':
+                x = gElCanvas.width - 20
+                break
+            case 'center':
+                x = gElCanvas.width / 2
+                break
+        }
         const y = currentY
 
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
         gCtx.strokeStyle = strokeColor
 
-        const { boxX, boxY, boxWidth, boxHeight } = getTextBoxSize(gCtx, txt, x, y)
+        const { boxX, boxY, boxWidth, boxHeight } = getTextBoxSize(gCtx, txt, x, y, alignment)
         updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight)
 
     
@@ -67,13 +78,25 @@ function drawText(lines, selectedLineIdx) {
     })
 }
 
-function getTextBoxSize(gCtx, txt, x, y, padding = 10) {
+function getTextBoxSize(gCtx, txt, x, y, alignment, padding = 10) {
     const measure = gCtx.measureText(txt)
     const txtWidth = measure.width
     const txtHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent
 
+    let boxX
+    switch (alignment) {
+        case 'left':
+            boxX = x - padding
+            break
+        case 'right':
+            boxX = x - txtWidth - padding
+            break
+        case 'center':
+            boxX = x - (txtWidth / 2) - padding
+            break
+    }
     return {
-        boxX: x - (txtWidth / 2) - padding,
+        boxX: boxX,
         boxY: y - measure.actualBoundingBoxAscent - padding,
         boxWidth: txtWidth + (padding*2),
         boxHeight: txtHeight + (padding*2)
@@ -153,3 +176,8 @@ function onLineClick(ev) {
         renderMeme()
     }
 }    
+
+function onSetAlignment(align) {
+    setAlignment(align)
+    renderMeme()
+}
