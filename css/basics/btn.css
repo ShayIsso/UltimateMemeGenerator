@@ -1,4 +1,5 @@
-.btn, .btn-editor {
+.btn,
+.btn-editor {
     display: flex;
     border-radius: 15px;
     text-decoration: none;
@@ -28,10 +29,19 @@
     opacity: .8;
     color: black;
     cursor: pointer;
+    border-inline-end: 2px solid black;
 }
+
+.btn-font:nth-child(5) {
+    border: none;
+}
+
 
 .btn-editor {
     background-color: rgb(151, 136, 0);
+    width: 3.675rem;
+    height: 3.675rem;
+    font-size: 1em;
 }
 
 .btn-editor.btn-add-input {
@@ -43,11 +53,13 @@
 }
 
 /* stroke and fill colors */
-.stroke-color, .fill-color {
+.stroke-color,
+.fill-color {
     position: relative;
 }
 
-.stroke-color-picker, .fill-color-picker {
+.stroke-color-picker,
+.fill-color-picker {
     position: absolute;
     inset: 0;
     width: 100%;

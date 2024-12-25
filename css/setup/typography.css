@@ -58,3 +58,27 @@
 .fa.stroke-color::before {
   content: '\f1fc';
 }
+
+/* input editors */
+.fa.btn-add-input::before {
+  content: '\2b';
+}
+
+.fa.btn-switch-input::before {
+  content: '\f062  \f063';
+}
+
+.fa.btn-delete-input::before {
+  content: '\f068';
+}
+
+/* action container */
+.fa.btn-download::before {
+  content: '\f019';
+  margin: .5em;
+}
+
+.fa.btn-share::before {
+  content: '\f14d';
+  margin: .5em;
+}

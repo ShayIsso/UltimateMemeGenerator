@@ -1,5 +1,6 @@
 .editor-tools {
     gap: 1.25rem;
+    font-weight: 600;
 }
 
 .editor-tools .meme-text-input {
@@ -8,4 +9,7 @@
     border: none;
     border-radius: 1.75rem;
     text-align: center;
+    font-size: clamp(1vw, 1em, 3vw);
+    padding-inline-start: 30px;
+    background-color: rgb(236, 234, 234);
 }
