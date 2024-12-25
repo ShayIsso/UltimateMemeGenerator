@@ -1,0 +1,27 @@
+/* Tablet */
+@media (min-width: 880px) {
+    .meme-container {
+        width: 100%; 
+        max-width: 840px;
+        margin: 0 auto;
+    }
+
+    .meme-image {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1020px) {
+    .meme-container {
+        width: 100%; 
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    .meme-image {
+        flex: 1 1 calc(25% - 10px);
+        max-width: calc(25% - 10px);
+    }
+}
