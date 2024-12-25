@@ -30,6 +30,7 @@ function renderMeme() {
     img.onload = () => {
         drawImage(img)
         drawText(lines, selectedLineIdx)
+        focusOnInput()
     }
 }
 
@@ -149,6 +150,7 @@ function onChangeLineSize(diff) {
 function onAddLine() {
     addLine()
     renderMeme()
+    focusOnInput(true)
 }
 
 function onDeleteLine() {
@@ -178,4 +180,15 @@ function onLineClick(ev) {
 function onSetAlignment(align) {
     setAlignment(align)
     renderMeme()
+}
+
+function focusOnInput(clear = false) {
+    const elInput = document.querySelector('.meme-text-input');
+    if (!elInput) return;
+
+    if (clear) elInput.value = ''
+    elInput.focus()
+
+    const txtLen = elInput.value.length
+    elInput.setSelectionRange(txtLen, txtLen)
 }
