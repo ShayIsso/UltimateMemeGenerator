@@ -54,9 +54,13 @@ function _createLine() {
     }
 }
 
+function isValidLine(lines, selectedLineIdx) {
+    return selectedLineIdx !== -1 && lines && lines.length > 0
+}
+
 function setLineText(txt) {
     const { lines, selectedLineIdx } = gMeme
-    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].txt = txt
 }
 
@@ -66,25 +70,25 @@ function setImg(imgId) {
 
 function setStrokeStyle(newColor) {
     const { lines, selectedLineIdx } = gMeme
-    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].strokeColor = newColor
 }
 
 function setFillStyle(newColor) {
     const { lines, selectedLineIdx } = gMeme
-    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].fillColor = newColor
 }
 
 function changeLineSize(diff) {
     const { lines, selectedLineIdx } = gMeme
-    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].size += diff
 }
 
 function setAlignment(newAlignment) {
     const { lines, selectedLineIdx } = gMeme
-    if (selectedLineIdx === -1 || !lines || lines.length <= 0) return
+    if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].alignment = newAlignment
 }
 
@@ -109,6 +113,7 @@ function deleteLine() {
 
 function switchLine() {
     const { selectedLineIdx, lines } = gMeme
+    if (!isValidLine(lines, selectedLineIdx)) return
     gMeme.selectedLineIdx = (selectedLineIdx < lines.length - 1) ? selectedLineIdx + 1 : 0
 }
 
