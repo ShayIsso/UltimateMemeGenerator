@@ -46,12 +46,15 @@
                     <button class="btn-editor btn-delete-input" onclick="onDeleteLine()">Delete</button>
                 </div>
                 <div class="font-editors-container flex">
-                    <button class="btn-font" onclick="onChangeLineSize(3)">A +</button>
-                    <button class="btn-font" onclick="onChangeLineSize(-3)">A -</button>
-                    <button class="btn-font stroke-color">Stroke Color
+                    <button class="btn-font fa font plus" onclick="onChangeLineSize(3)"></button>
+                    <button class="btn-font fa font minus" onclick="onChangeLineSize(-3)"></button>
+                    <button class="btn-font fa font align-left" onclick="onSetAlignment('left')"></button>
+                    <button class="btn-font fa font align-center" onclick="onSetAlignment('center')"></button>
+                    <button class="btn-font fa font align-right" onclick="onSetAlignment('right')"></button>
+                    <button class="btn-font fa stroke-color">
                         <input type="color" class="stroke-color-picker" oninput="onSetStrokeStyle(this)">
                     </button>
-                    <button class="btn-font fill-color" input type="color">Fill Color
+                    <button class="btn-font fa fill-color">
                         <input type="color" class="fill-color-picker" oninput="onSetFillStyle(this)">
                     </button>
                 </div>

@@ -1,17 +1,60 @@
 @font-face {
-    font-family: 'Poppins';
-    src: url('../../fonts/Poppins-Medium.ttf');
-    font-weight: 500;  /* Medium */
-  }
-  
-  @font-face {
-    font-family: 'Poppins';
-    src: url('../../fonts/Poppins-SemiBold.ttf');
-    font-weight: 600;  /* SemiBold */
-  }
-  
-  @font-face {
-    font-family: 'Poppins';
-    src: url('../../fonts/Poppins-ExtraBold.ttf');
-    font-weight: 800;  /* ExtraBold */
-  }
+  font-family: Poppins;
+  src: url('../../fonts/Poppins-Medium.ttf');
+  font-weight: 500;
+  /* Medium */
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url('../../fonts/Poppins-SemiBold.ttf');
+  font-weight: 600;
+  /* SemiBold */
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url('../../fonts/Poppins-ExtraBold.ttf');
+  font-weight: 800;
+  /* ExtraBold */
+}
+
+/* font awsome */
+
+@font-face {
+  font-family: fa;
+  src: url('../../fonts/fa/fa-solid-900.ttf');
+}
+
+.fa::before {
+  font-family: fa;
+}
+
+/* fa fonts */ 
+.fa.font.plus::before {
+  content: '\f031 +';
+}
+
+.fa.font.minus::before {
+  content: '\f031 -';
+}
+
+.fa.font.align-left::before {
+  content: '\f036';
+}
+
+.fa.font.align-center::before {
+  content: '\f037';
+}
+
+.fa.font.align-right::before {
+  content: '\f038';
+}
+
+.fa.fill-color::before {
+    content: '\f576';
+}
+
+.fa.stroke-color::before {
+  content: '\f1fc';
+}

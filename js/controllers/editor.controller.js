@@ -82,7 +82,7 @@ function getTextBoxSize(gCtx, txt, x, y, alignment, padding = 10) {
     const measure = gCtx.measureText(txt)
     const txtWidth = measure.width
     const txtHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent
-
+    
     let boxX
     switch (alignment) {
         case 'left':
@@ -138,7 +138,7 @@ function onSetFillStyle(elColor) {
 
 function setButtonBackgroundColor(color, type) {
     const button = document.querySelector(`.${type}-color`) 
-    button.style.backgroundColor = color
+    button.style.color = color
 }
 
 function onChangeLineSize(diff) {

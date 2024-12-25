@@ -46,6 +46,7 @@ function _createLine() {
         size: 25,
         fillColor: 'white',
         strokeColor: 'black',
+        alignment: 'center',
         lineWidth: 0,
         lineHeight: 0,
         lineX: 0,
