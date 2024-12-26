@@ -1,11 +1,14 @@
 'use strict';
 let gElCanvas
 let gCtx
+let gStartPos
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 const LINE_HEIGHT_STEP = 50
 
 function initCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    addListeners()
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 }
@@ -46,8 +49,9 @@ function drawText(lines, selectedLineIdx) {
         gCtx.font = `800 ${size}px Poppins`
         gCtx.textAlign = alignment
 
-        let x = getStartX(alignment)
-        const y = LINE_HEIGHT_STEP * (idx + 1)
+
+        let x = (lineX!== 0 && lineY!==0) ? lineX : getStartX(alignment)
+        let y = (lineX!== 0 && lineY!==0) ? lineY : LINE_HEIGHT_STEP * (idx + 1)
 
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
@@ -58,11 +62,10 @@ function drawText(lines, selectedLineIdx) {
 
 
         gCtx.strokeText(txt, x, y)
+        gCtx.fillText(txt, x, y)
         if (idx === selectedLineIdx) {
             drawTextBox(idx, boxX, boxY, boxWidth, boxHeight)
         }
-
-        gCtx.fillText(txt, x, y)
     })
 }
 
@@ -97,7 +100,7 @@ function getStartX(alignment) {
         case 'right': return gElCanvas.width - 20
         case 'center': return gElCanvas.width / 2
     }
-}
+ }
 
 function drawTextBox(idx, boxX, boxY, boxWidth, boxHeight) {
     gCtx.strokeStyle = 'black'
@@ -115,6 +118,7 @@ function onSetLineText(txt) {
 function onDownloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('image/jpeg', 1.0)
     elLink.href = imgContent
+
     elLink.download = 'my-meme.jpeg'
 }
 
@@ -158,18 +162,22 @@ function onSwitchLine() {
     renderMeme()
 }
 
-function onLineClick(ev) {
+function onLineClick(pos) {
     const meme = getMeme()
-    const { offsetX, offsetY } = ev
     const { lines } = meme
 
-    const clickedLineIdx = lines.findIndex(({ lineX, lineY, lineWidth, lineHeight }) => {
-        return offsetX >= lineX && offsetX <= lineX + lineWidth
-            && offsetY >= lineY && offsetY <= lineY + lineHeight
+    const clickedLineIdx = lines.findIndex(({ boxX, boxY, boxWidth, boxHeight }) => {
+        return pos.x >= boxX && pos.x <= boxX + boxWidth
+            && pos.y >= boxY && pos.y <= boxY + boxHeight
     })
-
-    clickedLineIdx !== -1 ? setSelectedLineIdx(clickedLineIdx) : setSelectedLineIdx(-1)
-    renderMeme()
+    
+    if (clickedLineIdx !== -1) {
+        setSelectedLineIdx(clickedLineIdx)
+        return true
+    } else {
+        setSelectedLineIdx(-1)
+        return false
+    }
 }
 
 function onSetAlignment(align) {
@@ -186,4 +194,78 @@ function focusOnInput(clear = false) {
 
     const txtLen = elInput.value.length
     elInput.setSelectionRange(txtLen, txtLen)
+}
+
+function addListeners() {
+    addMouseListeners()
+    // addTouchListeners()
+    //Listen for resize ev
+    window.addEventListener('resize', resizeCanvas)
+  }
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+// function addTouchListeners() {
+//     gElCanvas.addEventListener('touchstart', onDown)
+//     gElCanvas.addEventListener('touchmove', onMove)
+//     gElCanvas.addEventListener('touchend', onUp)
+// }
+
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVS.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    if (!onLineClick(pos)) {
+        renderMeme()
+        return 
+    }
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    gStartPos = {
+        x: line.lineX || pos.x,
+        y: line.lineY || pos.y
+    }
+
+    setLineDrag(true)
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const meme = getMeme()
+    const { lines, selectedLineIdx } = meme
+    
+    if (!lines[selectedLineIdx].isDrag) return
+    const pos = getEvPos(ev)
+
+    const dx = pos.x - gStartPos.x 
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy)
+
+    gStartPos = pos
+
+    renderMeme()
+}
+
+function onUp() {
+    setLineDrag(false)
+    document.body.style.cursor = 'grab'
 }

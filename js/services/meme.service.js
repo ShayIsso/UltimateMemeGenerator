@@ -51,6 +51,11 @@ function _createLine() {
         lineHeight: 0,
         lineX: 0,
         lineY: 0,
+        boxX: 0,
+        boxY: 0,
+        boxWidth: 0,
+        boxHeight: 0,
+        isDrag: false,
     }
 }
 
@@ -118,12 +123,25 @@ function switchLine() {
 }
 
 function updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight) {
-    gMeme.lines[idx].lineWidth = boxWidth
-    gMeme.lines[idx].lineHeight = boxHeight
-    gMeme.lines[idx].lineX = boxX
-    gMeme.lines[idx].lineY = boxY
+    gMeme.lines[idx].boxWidth = boxWidth
+    gMeme.lines[idx].boxHeight = boxHeight
+    gMeme.lines[idx].boxX = boxX
+    gMeme.lines[idx].boxY = boxY
 }
 
 function setSelectedLineIdx(idx) {
     gMeme.selectedLineIdx = idx
+}
+
+function setLineDrag(isDrag) {
+    const { selectedLineIdx, lines } = gMeme
+    if (!isValidLine(lines, selectedLineIdx)) return
+    lines[selectedLineIdx].isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+    const { selectedLineIdx, lines } = gMeme
+    if (!isValidLine(lines, selectedLineIdx)) return
+    lines[selectedLineIdx].lineX += dx 
+    lines[selectedLineIdx].lineY += dy    
 }
