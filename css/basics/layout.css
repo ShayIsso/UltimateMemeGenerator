@@ -32,4 +32,5 @@
   align-items: center;
   max-width: min-content;
   margin: 1.25rem auto;
+  flex-direction: column;
 }

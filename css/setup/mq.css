@@ -1,5 +1,9 @@
 /* Tablet */
 @media (min-width: 880px) {
+    .editor-layout {
+        flex-direction: row;
+    }
+
     .meme-container {
         width: 100%; 
         max-width: 840px;
@@ -14,6 +18,10 @@
 
 /* Desktop */
 @media (min-width: 1020px) {
+    .editor-layout {
+        flex-direction: row;
+    }
+    
     .meme-container {
         width: 100%; 
         max-width: 980px;

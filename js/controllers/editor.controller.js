@@ -40,26 +40,14 @@ function drawImage(img) {
 }
 
 function drawText(lines, selectedLineIdx) {
-    let currentY = LINE_HEIGHT_STEP
     lines.forEach((line, idx) => {
-        const { txt, size, fillColor, strokeColor, alignment } = line
+        const { txt, size, fillColor, strokeColor, alignment, lineX, lineY } = line
 
         gCtx.font = `800 ${size}px Poppins`
         gCtx.textAlign = alignment
 
-        let x
-        switch (alignment) {
-            case 'left':
-                x = 20
-                break
-            case 'right':
-                x = gElCanvas.width - 20
-                break
-            case 'center':
-                x = gElCanvas.width / 2
-                break
-        }
-        const y = currentY
+        let x = getStartX(alignment)
+        const y = LINE_HEIGHT_STEP * (idx + 1)
 
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
@@ -75,7 +63,6 @@ function drawText(lines, selectedLineIdx) {
         }
 
         gCtx.fillText(txt, x, y)
-        currentY += LINE_HEIGHT_STEP
     })
 }
 
@@ -101,6 +88,14 @@ function getTextBoxSize(gCtx, txt, x, y, alignment, padding = 10) {
         boxY: y - measure.actualBoundingBoxAscent - padding,
         boxWidth: txtWidth + (padding * 2),
         boxHeight: txtHeight + (padding * 2)
+    }
+}
+
+function getStartX(alignment) {
+    switch (alignment) {
+        case 'left': return 20
+        case 'right': return gElCanvas.width - 20
+        case 'center': return gElCanvas.width / 2
     }
 }
 
