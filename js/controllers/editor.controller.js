@@ -33,7 +33,7 @@ function renderMeme() {
     img.onload = () => {
         drawImage(img)
         drawText(lines, selectedLineIdx)
-        focusOnInput()
+        // focusOnInput()
     }
 }
 
@@ -149,7 +149,7 @@ function onChangeLineSize(diff) {
 function onAddLine() {
     addLine()
     renderMeme()
-    focusOnInput(true)
+    // focusOnInput(true)
 }
 
 function onDeleteLine() {
@@ -162,25 +162,6 @@ function onSwitchLine() {
     renderMeme()
 }
 
-// function onLineClick(pos) {
-//     const meme = getMeme()
-//     const { lines } = meme
-
-//     const clickedLineIdx = lines.findIndex(({ boxX, boxY, boxWidth, boxHeight }) => {
-//         return pos.x >= boxX && pos.x <= boxX + boxWidth
-//             && pos.y >= boxY && pos.y <= boxY + boxHeight
-//     })
-    
-//     if (clickedLineIdx !== -1) {
-//         setSelectedLineIdx(clickedLineIdx)
-//         renderMeme()
-//         return true
-//     } else {
-//         setSelectedLineIdx(-1)
-//         renderMeme()
-//         return false
-//     }
-// }
 function onSetAlignment(align) {
     setAlignment(align)
     renderMeme()
@@ -283,6 +264,6 @@ function onUp() {
         setLineDrag(false)
         document.body.style.cursor = 'grab'
         renderMeme() 
-        focusOnInput() 
+        // focusOnInput() 
     }
 }
