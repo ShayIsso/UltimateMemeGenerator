@@ -218,9 +218,9 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     const { lines } = getMeme()
     
-    const clickedLineIdx = lines.findIndex(({ boxX, boxY, boxWidth, boxHeight }) => {
-        return pos.x >= boxX && pos.x <= boxX + boxWidth
-            && pos.y >= boxY && pos.y <= boxY + boxHeight
+    const clickedLineIdx = lines.findIndex(({ boxSize }) => {
+        return pos.x >= boxSize.x && pos.x <= boxSize.x + boxSize.width
+            && pos.y >= boxSize.y && pos.y <= boxSize.y + boxSize.height
     })
     
     if (clickedLineIdx !== -1) {

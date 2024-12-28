@@ -49,6 +49,7 @@ function _createLine() {
         alignment: 'center',
         pos: null,
         isDrag: false,
+        boxSize: { x: 0, y: 0, width: 0, height: 0 },
     }
 }
 
@@ -116,10 +117,10 @@ function switchLine() {
 }
 
 function updateTextBoundingBox(idx, boxX, boxY, boxWidth, boxHeight) {
-    gMeme.lines[idx].boxWidth = boxWidth
-    gMeme.lines[idx].boxHeight = boxHeight
-    gMeme.lines[idx].boxX = boxX
-    gMeme.lines[idx].boxY = boxY
+    gMeme.lines[idx].boxSize.x = boxX
+    gMeme.lines[idx].boxSize.y = boxY
+    gMeme.lines[idx].boxSize.width = boxWidth
+    gMeme.lines[idx].boxSize.height = boxHeight
 }
 
 function setSelectedLineIdx(idx) {
