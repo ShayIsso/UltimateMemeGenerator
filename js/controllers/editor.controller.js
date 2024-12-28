@@ -43,9 +43,10 @@ function drawImage(img) {
 
 function drawText(lines, selectedLineIdx) {
     lines.forEach((line, idx) => {
-        const { txt, size, fillColor, strokeColor, alignment, pos } = line
+        const { txt, size, font, fillColor, strokeColor, alignment, pos } = line
 
-        gCtx.font = `800 ${size}px Poppins`
+        const fontWeight = font === 'Poppins' ? '800' : 'normal';
+        gCtx.font = `${fontWeight} ${size}px ${font}`
         gCtx.textAlign = alignment
 
         const x = pos ? pos.x : getStartX(alignment)
@@ -174,6 +175,12 @@ function onSwitchLine() {
 
 function onSetAlignment(align) {
     setAlignment(align)
+    renderMeme()
+}
+
+function onSetFont(elFont) {
+    const newFont = elFont.value
+    setFont(newFont)
     renderMeme()
 }
 

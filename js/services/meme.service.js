@@ -44,6 +44,7 @@ function _createLine() {
     return {
         txt: 'Add Text Here',
         size: 25,
+        font: 'Poppins',
         fillColor: 'white',
         strokeColor: 'black',
         alignment: 'center',
@@ -89,6 +90,12 @@ function setAlignment(newAlignment) {
     const { lines, selectedLineIdx } = gMeme
     if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].alignment = newAlignment
+}
+
+function setFont(newFont) {
+    const { lines, selectedLineIdx } = gMeme
+    if (!isValidLine(lines, selectedLineIdx)) return
+    lines[selectedLineIdx].font = newFont
 }
 
 function addLine() {

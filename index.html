@@ -51,6 +51,16 @@
                     <button class="btn-font fa font align-left" onclick="onSetAlignment('left')"></button>
                     <button class="btn-font fa font align-center" onclick="onSetAlignment('center')"></button>
                     <button class="btn-font fa font align-right" onclick="onSetAlignment('right')"></button>
+                    <select class="font-select" onchange="onSetFont(this)">
+                        <option value="Poppins">POPPINS</option>
+                        <option value="Impact">IMPACT</option>
+                        <option value="Arial">ARIAL</option>
+                        <option value="Comic Sans MS">COMIC SANS MS</option>
+                        <option value="PermanentMarker">PERMANENT MARKER</option>
+                        <option value="Lobster">LOBSTER</option>
+                        <option value="Oswald">OSWALD</option>
+                        <option value="Roboto">ROBOTO</option>
+                    </select>
                     <button class="btn-font fa stroke-color">
                         <input type="color" class="stroke-color-picker" oninput="onSetStrokeStyle(this)">
                     </button>
