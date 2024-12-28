@@ -48,10 +48,36 @@ function renderSaved() {
 }
 
 function onLoadSavedMeme(memeIdx) {
-    const memeToLoad = structuredClone(gSavedMemes[memeIdx])
+    const memeToLoad = memeIdx
     if (!memeToLoad) return
     
     gMeme = memeToLoad
     togglePage('editor')
     renderMeme()
+}
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, (img) => {
+        setImgForMeme(img)
+        togglePage('editor')
+        renderMeme()
+    })
+}
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = function (event) {
+        const img = new Image()
+        img.onload = () => {
+            onImageReady(img)
+        }
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function onImageReady(img) {
+    const imgDataUrl = img.src
+    saveUploadedImg(imgDataUrl)
+    renderGallery()
 }
