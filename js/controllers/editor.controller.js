@@ -33,7 +33,6 @@ function renderMeme() {
     img.onload = () => {
         drawImage(img)
         drawText(lines, selectedLineIdx)
-        // focusOnInput()
     }
 }
 
@@ -99,7 +98,7 @@ function getStartX(alignment) {
         case 'right': return gElCanvas.width - 20
         case 'center': return gElCanvas.width / 2
     }
- }
+}
 
 function drawTextBox(idx, boxX, boxY, boxWidth, boxHeight) {
     gCtx.strokeStyle = 'black'
@@ -148,7 +147,6 @@ function onChangeLineSize(diff) {
 function onAddLine() {
     addLine()
     renderMeme()
-    // focusOnInput(true)
 }
 
 function onDeleteLine() {
@@ -166,23 +164,12 @@ function onSetAlignment(align) {
     renderMeme()
 }
 
-function focusOnInput(clear = false) {
-    const elInput = document.querySelector('.meme-text-input');
-    if (!elInput) return;
-
-    if (clear) elInput.value = ''
-    elInput.focus()
-
-    const txtLen = elInput.value.length
-    elInput.setSelectionRange(txtLen, txtLen)
-}
-
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
     //Listen for resize ev
     window.addEventListener('resize', resizeCanvas)
-  }
+}
 
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)
@@ -217,12 +204,12 @@ function getEvPos(ev) {
 function onDown(ev) {
     const pos = getEvPos(ev)
     const { lines } = getMeme()
-    
+
     const clickedLineIdx = lines.findIndex(({ boxSize }) => {
         return pos.x >= boxSize.x && pos.x <= boxSize.x + boxSize.width
             && pos.y >= boxSize.y && pos.y <= boxSize.y + boxSize.height
     })
-    
+
     if (clickedLineIdx !== -1) {
         setSelectedLineIdx(clickedLineIdx)
         const line = lines[clickedLineIdx]
@@ -233,11 +220,10 @@ function onDown(ev) {
 
         gStartPos = line.pos
         setLineDrag(true)
-        document.body.style.cursor = 'grabbing'
     } else {
         setSelectedLineIdx(-1)
     }
-    
+
     renderMeme()
 
 }
@@ -249,8 +235,8 @@ function onMove(ev) {
     if (selectedLineIdx === -1 || !lines[selectedLineIdx] || !lines[selectedLineIdx].isDrag) return
 
     const pos = getEvPos(ev)
-
-    const dx = pos.x - gStartPos.x 
+    
+    const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy)
 
@@ -261,11 +247,9 @@ function onMove(ev) {
 function onUp() {
     const meme = getMeme()
     const { selectedLineIdx } = meme
-    
+
     if (selectedLineIdx !== -1) {
         setLineDrag(false)
-        document.body.style.cursor = 'grab'
-        renderMeme() 
-        // focusOnInput() 
+        renderMeme()
     }
 }
