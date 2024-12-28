@@ -44,14 +44,13 @@ function drawImage(img) {
 
 function drawText(lines, selectedLineIdx) {
     lines.forEach((line, idx) => {
-        const { txt, size, fillColor, strokeColor, alignment, lineX, lineY } = line
+        const { txt, size, fillColor, strokeColor, alignment, pos } = line
 
         gCtx.font = `800 ${size}px Poppins`
         gCtx.textAlign = alignment
 
-
-        let x = (lineX!== 0 && lineY!==0) ? lineX : getStartX(alignment)
-        let y = (lineX!== 0 && lineY!==0) ? lineY : LINE_HEIGHT_STEP * (idx + 1)
+        const x = pos ? pos.x : getStartX(alignment)
+        const y = pos ? pos.y : LINE_HEIGHT_STEP * (idx + 1)
 
         gCtx.lineWidth = 2
         gCtx.fillStyle = fillColor
@@ -227,10 +226,12 @@ function onDown(ev) {
     if (clickedLineIdx !== -1) {
         setSelectedLineIdx(clickedLineIdx)
         const line = lines[clickedLineIdx]
-        gStartPos = {
-            x: line.lineX || pos.x,
-            y: line.lineY || pos.y
+
+        if (!line.pos) {
+            line.pos = { x: pos.x, y: pos.y }
         }
+
+        gStartPos = line.pos
         setLineDrag(true)
         document.body.style.cursor = 'grabbing'
     } else {
@@ -238,6 +239,7 @@ function onDown(ev) {
     }
     
     renderMeme()
+
 }
 
 function onMove(ev) {
@@ -258,7 +260,7 @@ function onMove(ev) {
 
 function onUp() {
     const meme = getMeme()
-    const { selectedLineIdx, lines } = meme
+    const { selectedLineIdx } = meme
     
     if (selectedLineIdx !== -1) {
         setLineDrag(false)

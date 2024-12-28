@@ -47,14 +47,7 @@ function _createLine() {
         fillColor: 'white',
         strokeColor: 'black',
         alignment: 'center',
-        lineWidth: 0,
-        lineHeight: 0,
-        lineX: 0,
-        lineY: 0,
-        boxX: 0,
-        boxY: 0,
-        boxWidth: 0,
-        boxHeight: 0,
+        pos: null,
         isDrag: false,
     }
 }
@@ -142,6 +135,6 @@ function setLineDrag(isDrag) {
 function moveLine(dx, dy) {
     const { selectedLineIdx, lines } = gMeme
     if (!isValidLine(lines, selectedLineIdx)) return
-    lines[selectedLineIdx].lineX += dx 
-    lines[selectedLineIdx].lineY += dy    
+    lines[selectedLineIdx].pos.x += dx 
+    lines[selectedLineIdx].pos.y += dy    
 }
