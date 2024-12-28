@@ -26,8 +26,17 @@
   src: url('../../fonts/fa/fa-solid-900.ttf');
 }
 
+@font-face {
+  font-family: fa-brands;
+  src: url('../../fonts/fa/fa-brands-400.ttf');
+}
+
 .fa::before {
   font-family: fa;
+}
+
+.fa-brands::before {
+  font-family: fa-brands;
 }
 
 /* fa fonts */ 
@@ -78,7 +87,7 @@
   margin: .5em;
 }
 
-.fa.btn-share::before {
-  content: '\f14d';
+.fa-brands.btn-share::before {
+  content: '\f09a';
   margin: .5em;
 }
