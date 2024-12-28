@@ -120,6 +120,19 @@ function onDownloadImg(elLink) {
     elLink.download = 'my-meme.jpeg'
 }
 
+function onShareImg() {
+    const imgContent = gElCanvas.toDataURL('image/jpeg', 1.0)
+
+    function onSuccess(uploadImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadImgUrl)
+        const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}`
+    
+        window.open(fbShareUrl, '_blank')
+    }
+
+    uploadImg(imgContent, onSuccess)
+}
+
 function onSetStrokeStyle(elColor) {
     const newColor = elColor.value
     setStrokeStyle(newColor)
