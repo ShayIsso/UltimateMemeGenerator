@@ -1,6 +1,8 @@
 'use strict';
+const STORAGE_KEY = 'memeDB'
 
 let gImgs = []
+let gSavedMemes  = loadFromStorage(STORAGE_KEY) || []
 let gMeme
 
 createMeme()
@@ -9,6 +11,7 @@ _createImgs()
 
 function createMeme() {
     gMeme = {
+        id: makeId(), 
         selectedImgId: 1,
         selectedLineIdx: 0,
         lines: [_createLine()]
@@ -145,4 +148,18 @@ function moveLine(dx, dy) {
     if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].pos.x += dx 
     lines[selectedLineIdx].pos.y += dy    
+}
+
+function _saveMemesToStorage() {
+    saveToStorage(STORAGE_KEY, gSavedMemes)
+}
+
+function saveMeme(imgData) {
+    const memeToSave = { ...structuredClone(gMeme), imgData }
+    gSavedMemes.push(memeToSave)
+    _saveMemesToStorage(STORAGE_KEY, gSavedMemes)
+}
+
+function getSavedMemes() {
+    return gSavedMemes
 }

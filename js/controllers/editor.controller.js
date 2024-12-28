@@ -135,7 +135,8 @@ function onShareImg() {
 }
 
 function onSaveImg() {
-
+    const imgData = gElCanvas.toDataURL('image/jpeg', 1.0)
+    saveMeme(imgData)
 }
 
 function onSetStrokeStyle(elColor) {

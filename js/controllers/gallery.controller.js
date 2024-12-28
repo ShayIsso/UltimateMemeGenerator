@@ -26,3 +26,32 @@ function onShowGalleryPage() {
     togglePage('gallery')
     setInputValue('meme-text')
 }
+
+function onShowSavedPage() {
+    togglePage('saved')
+    renderSaved()
+}
+
+function renderSaved() {
+    const savedMemes = getSavedMemes()
+    if (!savedMemes.length) {
+        document.querySelector('.meme-saved-page main').innerHTML = '<p>No saved memes found.</p>'
+        return
+    }
+
+    const strHtmls = savedMemes.map((meme, idx) => `
+        <article class="meme-image">
+            <img src="${meme.imgData}" alt="Saved Meme ${idx + 1}" onclick="onLoadSavedMeme(${idx})">
+        </article>
+    `).join('');
+    document.querySelector('.meme-saved-page .meme-container').innerHTML = strHtmls
+}
+
+function onLoadSavedMeme(memeIdx) {
+    const memeToLoad = structuredClone(gSavedMemes[memeIdx])
+    if (!memeToLoad) return
+    
+    gMeme = memeToLoad
+    togglePage('editor')
+    renderMeme()
+}
