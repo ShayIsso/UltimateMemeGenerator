@@ -32,10 +32,9 @@
     border-inline-end: 2px solid black;
 }
 
-.btn-font:nth-child(5) {
+.btn-font:last-child, .btn-font:nth-child(5){
     border: none;
 }
-
 
 .btn-editor {
     background-color: rgb(151, 136, 0);

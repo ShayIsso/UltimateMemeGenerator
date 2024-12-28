@@ -13,4 +13,12 @@
     background-color: oldlace;
     opacity: .5;
     border-radius: 15px;
+    width: 100%;
+}
+
+.font-editors-container .font-select {
+    grid-column: 1 / span 3;
+    text-align: center;
+    border-end-start-radius: 15px;
+    border-inline-end: 2px solid black;
 }
