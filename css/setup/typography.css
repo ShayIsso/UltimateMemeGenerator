@@ -115,6 +115,11 @@
   margin: .5em;
 }
 
+.fa.btn-save::before {
+  content: '\f0c7';
+  margin: .5em;
+}
+
 .fa-brands.btn-share::before {
   content: '\f09a';
   margin: .5em;

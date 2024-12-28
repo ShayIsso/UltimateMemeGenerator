@@ -134,6 +134,10 @@ function onShareImg() {
     uploadImg(imgContent, onSuccess)
 }
 
+function onSaveImg() {
+
+}
+
 function onSetStrokeStyle(elColor) {
     const newColor = elColor.value
     setStrokeStyle(newColor)
