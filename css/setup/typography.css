@@ -96,6 +96,11 @@
   content: '\f1fc';
 }
 
+.fa.search-icon::before {
+  content: '\f002';
+  margin: .5em;
+}
+
 /* input editors */
 .fa.btn-add-input::before {
   content: '\2b';
