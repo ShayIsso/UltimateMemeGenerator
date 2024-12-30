@@ -2,6 +2,11 @@
 
 function onInit() {
     renderGallery()
+
+    if (gSavedMemes.length > 0) {
+        renderSaved()
+        console.log(gSavedMemes)
+    }
 }
 
 function renderGallery() {
@@ -16,10 +21,11 @@ function renderGallery() {
 }
 
 function onImgSelect(imgId) {
-    createMeme()
-    setImg(imgId)
+    createMemeWithImage(imgId)
     togglePage('editor') 
+    // initEditor()
     initCanvas()
+    // renderMeme()
 }
 
 function onShowGalleryPage() {
@@ -48,36 +54,45 @@ function renderSaved() {
 }
 
 function onLoadSavedMeme(memeIdx) {
-    const memeToLoad = memeIdx
+    const memeToLoad = gSavedMemes[memeIdx]
     if (!memeToLoad) return
-    
-    gMeme = memeToLoad
+
+    gMeme = structuredClone(memeToLoad)
+    // initEditor()
+
     togglePage('editor')
     renderMeme()
 }
 
 function onImgInput(ev) {
     loadImageFromInput(ev, (img) => {
-        setImgForMeme(img)
+        const imgDataUrl = img.src
+        const imgId = handleUploadedImage(imgDataUrl)
+        createMemeWithImage(imgId)
         togglePage('editor')
         renderMeme()
     })
 }
 function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader()
+    const reader = new FileReader();
 
     reader.onload = function (event) {
         const img = new Image()
         img.onload = () => {
-            onImageReady(img)
-        }
+            onImageReady(img)}
         img.src = event.target.result
     }
-    reader.readAsDataURL(ev.target.files[0])
+
+    reader.readAsDataURL(ev.target.files[0]);
 }
 
 function onImageReady(img) {
     const imgDataUrl = img.src
     saveUploadedImg(imgDataUrl)
     renderGallery()
+}
+
+
+function handleUploadedImage(imgDataUrl) {
+    return addImgToGallery(imgDataUrl)
 }

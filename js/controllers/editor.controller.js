@@ -13,6 +13,7 @@ function initCanvas() {
     window.addEventListener('resize', resizeCanvas)
 }
 
+
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -23,22 +24,22 @@ function resizeCanvas() {
 
 function renderMeme() {
     const meme = getMeme()
+    const { selectedImgId, lines, selectedLineIdx } = meme 
     setInputValue('meme-text', meme)
 
-    const { selectedImgId, lines, selectedLineIdx } = meme
-    const imgData = getImgById(selectedImgId)
-
-    const img = new Image()
-    img.src = imgData.url
-    img.onload = () => {
-        drawImage(img)
-        drawText(lines, selectedLineIdx)
-    }
+    const imgData = getImgById(selectedImgId) || { url: meme.imgData }
+    drawImage(imgData.url, lines, selectedLineIdx)
 }
 
-function drawImage(img) {
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+function drawImage(imgUrl, lines, selectedLineIdx) {
+    const img = new Image()  
+    img.src = imgUrl
+    img.onload = () => {
+        // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+        gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width 
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height) 
+        drawText(lines, selectedLineIdx)
+    }
 }
 
 function drawText(lines, selectedLineIdx) {
@@ -190,10 +191,9 @@ function onSetFont(elFont) {
 }
 
 function addListeners() {
+    if (!gElCanvas) return
     addMouseListeners()
     addTouchListeners()
-    //Listen for resize ev
-    window.addEventListener('resize', resizeCanvas)
 }
 
 function addMouseListeners() {

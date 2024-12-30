@@ -43,6 +43,15 @@ function _createImgs() {
     }
 }
 
+function addImgToGallery(imgDataUrl) {
+    const newImage = {
+        id: makeId(),
+        url: imgDataUrl
+    }
+    gImgs.push(newImage)
+    return newImage.id
+}
+
 function _createLine() {
     return {
         txt: 'Add Text Here',
@@ -57,6 +66,15 @@ function _createLine() {
     }
 }
 
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+}
+
+function createMemeWithImage(imgId) {
+    createMeme()
+    setImg(imgId)
+}
+
 function isValidLine(lines, selectedLineIdx) {
     return selectedLineIdx !== -1 && lines && lines.length > 0
 }
@@ -65,10 +83,6 @@ function setLineText(txt) {
     const { lines, selectedLineIdx } = gMeme
     if (!isValidLine(lines, selectedLineIdx)) return
     lines[selectedLineIdx].txt = txt
-}
-
-function setImg(imgId) {
-    gMeme.selectedImgId = imgId
 }
 
 function setStrokeStyle(newColor) {
@@ -155,11 +169,20 @@ function _saveMemesToStorage() {
 }
 
 function saveMeme(imgData) {
-    const memeToSave = { ...structuredClone(gMeme), imgData }
+    const memeToSave = { 
+        ...structuredClone(gMeme), 
+        imgData: imgData || getImgById(gMeme.selectedImgId)?.url 
+    }
+
     gSavedMemes.push(memeToSave)
-    _saveMemesToStorage(STORAGE_KEY, gSavedMemes)
+    _saveMemesToStorage()
 }
 
 function getSavedMemes() {
     return gSavedMemes
+}
+
+function updateSavedMemeImg(meme) {
+    const img = getImgById(meme.selectedImgId)
+    meme.imgData = img.url
 }
