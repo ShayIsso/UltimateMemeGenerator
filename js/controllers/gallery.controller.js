@@ -2,6 +2,7 @@
 
 function onInit() {
     renderGallery()
+    renderKeywords()
 
     if (gSavedMemes.length > 0) {
         renderSaved()
@@ -9,23 +10,38 @@ function onInit() {
     }
 }
 
-function renderGallery() {
-    const imgs = getImgs()
+function renderGallery(searchTerm = '') {
+    const imgs = getFilteredImgs(searchTerm)
     const strHtmls = imgs.map(img => `
         <article class="meme-image">
-            <img src="${img.url}" alt="funny meme" onclick="onImgSelect('${img.id}')">
+            <img src="${img.url}" alt="meme" onclick="onImgSelect('${img.id}')">
         </article>
-        `)
+    `).join('')
 
-    document.querySelector('.meme-container').innerHTML = strHtmls.join('')
+    document.querySelector('.meme-container').innerHTML = strHtmls
 }
 
-function onImgSelect(imgId) {
-    createMemeWithImage(imgId)
-    togglePage('editor') 
-    // initEditor()
-    initCanvas()
-    // renderMeme()
+function renderKeywords() {
+    const keywords = getKeywords()
+    const strHTML = keywords.map(keyword => {
+        const size = gKeywordSearchCountMap[keyword] || 10
+        return `
+            <button 
+                class="keyword-btn" 
+                onclick="onKeywordClick('${keyword}')"
+                style="font-size: ${size}px">
+                ${keyword}
+            </button>
+        `
+    }).join('')
+    document.querySelector('.keywords-container').innerHTML = strHTML
+}
+
+function onKeywordClick(keyword) {
+    incrementKeyword(keyword)
+    document.querySelector('.search-meme-input').value = keyword
+    renderKeywords()
+    renderGallery(keyword)
 }
 
 function onShowGalleryPage() {
@@ -95,4 +111,14 @@ function onImageReady(img) {
 
 function handleUploadedImage(imgDataUrl) {
     return addImgToGallery(imgDataUrl)
+}
+
+function onSearchMeme(searchTerm) {
+    renderGallery(searchTerm)
+}
+
+function onKeywordClick(keyword) {
+    incrementKeyword(keyword)
+    renderKeywords()
+    renderGallery(keyword)
 }

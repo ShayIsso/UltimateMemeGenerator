@@ -21,6 +21,13 @@
     </header>
     <section class="meme-gallery-page">
         <main>
+            <div class="search-container flex">
+                <div class="search-box">
+                    <input type="text" class="search-meme-input" placeholder="Search" oninput="onSearchMeme(this.value)">
+                </div>
+                <div class="keywords-container flex wrap">
+                </div>
+            </div>
             <label for="file-upload" class="file-input-label flex center">Upload Image</label>
             <input id="file-upload" type="file" class="file-input" name="image" onchange="onImgInput(event)">            
             <section class="meme-container">

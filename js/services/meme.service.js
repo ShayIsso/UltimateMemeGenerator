@@ -4,6 +4,14 @@ const STORAGE_KEY = 'memeDB'
 let gImgs = []
 let gSavedMemes  = loadFromStorage(STORAGE_KEY) || []
 let gMeme
+let gKeywords = ['Happy', 'Sad', 'Crazy', 'Sarcastic', 'Funny']
+let gKeywordSearchCountMap = {
+    'Happy': 16,
+    'Sad': 16,
+    'Crazy': 16,
+    'Sarcastic': 16,
+    'Funny': 16
+}
 
 createMeme()
 _createImgs()
@@ -30,17 +38,23 @@ function getImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
 }
 
-function _createImgs() {
-    for (let i = 1; i <= 25; i++) {
-        const urlNum = i < 10 ? `00${i}` : `0${i}`
-        const url = `imgs/${urlNum}.jpg`;
+function getKeywords() {
+    return gKeywords
+}
 
-        gImgs.push({
-            id: makeId(),
-            url: url,
-            keywords: ['funny', 'dance']
-        });
-    }
+function getKeywordSize(keyword) {
+    return gKeywordSearchCountMap[keyword]
+}
+
+function _createImgs() {
+    gImgs = [
+        { id: makeId(), url: 'imgs/001.jpg', keywords: ['funny', 'politics', 'trump'] },
+        { id: makeId(), url: 'imgs/002.jpg', keywords: ['cute', 'dog', 'happy'] },
+        { id: makeId(), url: 'imgs/003.jpg', keywords: ['cute', 'baby', 'dog', 'sleep'] },
+        { id: makeId(), url: 'imgs/004.jpg', keywords: ['cute', 'cat', 'sleep'] },
+        { id: makeId(), url: 'imgs/005.jpg', keywords: ['funny', 'baby', 'success'] },
+        { id: makeId(), url: 'imgs/006.jpg', keywords: ['funny', 'history', 'science'] },
+    ]
 }
 
 function addImgToGallery(imgDataUrl) {
@@ -185,4 +199,21 @@ function getSavedMemes() {
 function updateSavedMemeImg(meme) {
     const img = getImgById(meme.selectedImgId)
     meme.imgData = img.url
+}
+
+function getFilteredImgs(searchTerm = '') {
+    if (!searchTerm) return gImgs
+    
+    searchTerm = searchTerm.toLowerCase()
+    return gImgs.filter(img => 
+        img.keywords.some(keyword => 
+            keyword.toLowerCase().includes(searchTerm)
+        )
+    )
+}
+
+function incrementKeyword(keyword) {
+    const currentSize = gKeywordSearchCountMap[keyword] || 10
+    const newSize = Math.min(30, currentSize + 2)
+    gKeywordSearchCountMap[keyword] = newSize
 }

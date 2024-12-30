@@ -22,3 +22,54 @@
     border-end-start-radius: 15px;
     border-inline-end: 2px solid black;
 }
+
+.search-container {
+    flex-direction: column;
+    padding: 20px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-meme-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-meme-input:focus {
+    border-color: var(--clr-primarybase);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.keywords-container {
+    background-color: lightgray;
+    border-radius: 25px;
+    max-width: max-content;
+    gap: 10px;
+}
+
+.keyword-btn {
+    background-color: lightgray;
+    font-size: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+@media (max-width: 880px) {
+    .keywords-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
