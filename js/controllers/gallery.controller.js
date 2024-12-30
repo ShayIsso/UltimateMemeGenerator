@@ -18,7 +18,7 @@ function renderGallery(searchTerm = '') {
         </article>
     `).join('')
 
-    document.querySelector('.meme-container').innerHTML = strHtmls
+    document.querySelector('.meme-container').innerHTML += strHtmls
 }
 
 function renderKeywords() {
@@ -35,6 +35,12 @@ function renderKeywords() {
         `
     }).join('')
     document.querySelector('.keywords-container').innerHTML = strHTML
+}
+
+function onImgSelect(imgId) {
+    createMemeWithImage(imgId)
+    togglePage('editor') 
+    initCanvas()
 }
 
 function onKeywordClick(keyword) {
@@ -65,7 +71,7 @@ function renderSaved() {
         <article class="meme-image">
             <img src="${meme.imgData}" alt="Saved Meme ${idx + 1}" onclick="onLoadSavedMeme(${idx})">
         </article>
-    `).join('');
+    `).join('')
     document.querySelector('.meme-saved-page .meme-container').innerHTML = strHtmls
 }
 
@@ -90,7 +96,7 @@ function onImgInput(ev) {
     })
 }
 function loadImageFromInput(ev, onImageReady) {
-    const reader = new FileReader();
+    const reader = new FileReader()
 
     reader.onload = function (event) {
         const img = new Image()
@@ -99,7 +105,7 @@ function loadImageFromInput(ev, onImageReady) {
         img.src = event.target.result
     }
 
-    reader.readAsDataURL(ev.target.files[0]);
+    reader.readAsDataURL(ev.target.files[0])
 }
 
 function onImageReady(img) {

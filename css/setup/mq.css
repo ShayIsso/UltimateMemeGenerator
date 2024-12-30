@@ -32,4 +32,19 @@
         flex: 1 1 calc(25% - 10px);
         max-width: calc(25% - 10px);
     }
+
+    .search-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .search-box {
+        max-width: 50%;
+    }
+
+    .keywords-container {
+        max-width: 50%;
+        justify-content: flex-end;
+    }
 }

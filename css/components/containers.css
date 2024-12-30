@@ -24,52 +24,95 @@
 }
 
 .search-container {
+    display: flex;
     flex-direction: column;
-    padding: 20px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
     max-width: 980px;
     margin: 0 auto;
 }
 
 .search-box {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #1c1e22;
+    border-radius: 25px;
+    padding: 10px 15px;
+    width: 100%;
 }
 
 .search-meme-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+    flex: 1;
+    background: none;
+    border: none;
     outline: none;
-    transition: all 0.3s ease;
+    color: #ccc;
+    font-size: 1rem;
+    padding: 0 10px;
 }
 
-.search-meme-input:focus {
-    border-color: var(--clr-primarybase);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+.search-meme-input::placeholder {
+    color: #666;
 }
 
 .keywords-container {
-    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    background-color: #4a4e58;
     border-radius: 25px;
-    max-width: max-content;
-    gap: 10px;
+    padding: 5px 15px;
+    gap: 15px;
+    width: 100%;
+    font-size: 1rem;
 }
 
 .keyword-btn {
-    background-color: lightgray;
-    font-size: 10px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.keyword-btn:hover {
+    color: #00d8a6;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-container {
+    order: -1; 
+    width: calc(25% - 10px); 
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1e22;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    color: #ccc;
+    text-align: center;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
+.upload-container:hover {
+    background-color: #4a4e58;
+    border-color: #00d8a6;
+}
 
-@media (max-width: 880px) {
-    .keywords-container {
-        flex-direction: column;
-        align-items: center;
-    }
+.upload-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.upload-box span {
+    font-size: 1rem;
+    font-weight: bold;
 }

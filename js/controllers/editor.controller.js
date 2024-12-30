@@ -1,4 +1,5 @@
 'use strict';
+
 let gElCanvas
 let gCtx
 let gStartPos
@@ -46,7 +47,7 @@ function drawText(lines, selectedLineIdx) {
     lines.forEach((line, idx) => {
         const { txt, size, font, fillColor, strokeColor, alignment, pos } = line
 
-        const fontWeight = font === 'Poppins' ? '800' : 'normal';
+        const fontWeight = font === 'Poppins' ? '800' : 'normal'
         gCtx.font = `${fontWeight} ${size}px ${font}`
         gCtx.textAlign = alignment
 

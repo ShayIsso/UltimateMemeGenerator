@@ -1,4 +1,5 @@
 'use strict';
+
 const STORAGE_KEY = 'memeDB'
 
 let gImgs = []
@@ -48,12 +49,31 @@ function getKeywordSize(keyword) {
 
 function _createImgs() {
     gImgs = [
-        { id: makeId(), url: 'imgs/001.jpg', keywords: ['funny', 'politics', 'trump'] },
-        { id: makeId(), url: 'imgs/002.jpg', keywords: ['cute', 'dog', 'happy'] },
-        { id: makeId(), url: 'imgs/003.jpg', keywords: ['cute', 'baby', 'dog', 'sleep'] },
-        { id: makeId(), url: 'imgs/004.jpg', keywords: ['cute', 'cat', 'sleep'] },
-        { id: makeId(), url: 'imgs/005.jpg', keywords: ['funny', 'baby', 'success'] },
-        { id: makeId(), url: 'imgs/006.jpg', keywords: ['funny', 'history', 'science'] },
+        { id: makeId(), url: 'imgs/001.jpg', keywords: ['Funny', 'Crazy'] },
+        { id: makeId(), url: 'imgs/002.jpg', keywords: ['Happy', 'Funny'] },
+        { id: makeId(), url: 'imgs/003.jpg', keywords: ['Happy', 'Crazy'] },
+        { id: makeId(), url: 'imgs/004.jpg', keywords: ['Sad', 'Happy'] },
+        { id: makeId(), url: 'imgs/005.jpg', keywords: ['Funny', 'Happy'] },
+        { id: makeId(), url: 'imgs/006.jpg', keywords: ['Sarcastic', 'Funny'] },
+        { id: makeId(), url: 'imgs/007.jpg', keywords: ['Crazy', 'Funny'] },
+        { id: makeId(), url: 'imgs/008.jpg', keywords: ['Happy', 'Crazy'] },
+        { id: makeId(), url: 'imgs/009.jpg', keywords: ['Happy', 'Funny'] },
+        { id: makeId(), url: 'imgs/010.jpg', keywords: ['Funny', 'Crazy'] },
+        { id: makeId(), url: 'imgs/011.jpg', keywords: ['Crazy', 'Sarcastic'] },
+        { id: makeId(), url: 'imgs/012.jpg', keywords: ['Sad', 'Sarcastic'] },
+        { id: makeId(), url: 'imgs/013.jpg', keywords: ['Happy', 'Funny'] },
+        { id: makeId(), url: 'imgs/014.jpg', keywords: ['Happy', 'Crazy'] },
+        { id: makeId(), url: 'imgs/015.jpg', keywords: ['Happy', 'Sad'] },
+        { id: makeId(), url: 'imgs/016.jpg', keywords: ['Funny', 'Crazy'] },
+        { id: makeId(), url: 'imgs/017.jpg', keywords: ['Crazy', 'Sad'] },
+        { id: makeId(), url: 'imgs/018.jpg', keywords: ['Sarcastic', 'Crazy'] },
+        { id: makeId(), url: 'imgs/019.jpg', keywords: ['Happy', 'Crazy'] },
+        { id: makeId(), url: 'imgs/020.jpg', keywords: ['Crazy', 'Funny'] },
+        { id: makeId(), url: 'imgs/021.jpg', keywords: ['Happy', 'Sad'] },
+        { id: makeId(), url: 'imgs/022.jpg', keywords: ['Sarcastic', 'Funny'] },
+        { id: makeId(), url: 'imgs/023.jpg', keywords: ['Crazy', 'Sarcastic'] },
+        { id: makeId(), url: 'imgs/024.jpg', keywords: ['Happy', 'Funny'] },
+        { id: makeId(), url: 'imgs/025.jpg', keywords: ['Happy', 'Cute'] },
     ]
 }
 
