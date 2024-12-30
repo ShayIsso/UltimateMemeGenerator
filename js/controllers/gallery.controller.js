@@ -11,13 +11,15 @@ function onInit() {
 
 function renderGallery(searchTerm = '') {
     const imgs = getFilteredImgs(searchTerm)
-    const strHtmls = imgs.map(img => `
+
+    const uploadHtml = renderUpload()
+    const imgHtmls = imgs.map(img => `
         <article class="meme-image">
             <img src="${img.url}" alt="meme" onclick="onImgSelect('${img.id}')">
         </article>
     `).join('')
 
-    document.querySelector('.meme-container').innerHTML += strHtmls
+    document.querySelector('.meme-container').innerHTML = uploadHtml + imgHtmls
 }
 
 function renderKeywords() {
@@ -116,6 +118,17 @@ function onImageReady(img) {
 
 function handleUploadedImage(imgDataUrl) {
     return addImgToGallery(imgDataUrl)
+}
+
+function renderUpload() {
+    return `
+        <article class="meme-image upload-container">
+            <label class="upload-box">
+                <span>Upload Image</span>
+                <input type="file" class="file-input" name="image" onchange="onImgInput(event)">
+            </label>
+        </article>
+    `
 }
 
 function onSearchMeme(searchTerm) {
