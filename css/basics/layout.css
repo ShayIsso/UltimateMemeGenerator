@@ -5,6 +5,9 @@
   gap: 10px;
   justify-content: center;
   width: 100%;
+  background-color: rgba(128, 128, 128, 0.221);
+  box-shadow: 0 2px 4px rgba(128, 128, 128, .2);
+  border-radius: 15px;
 }
 
 .meme-image {
