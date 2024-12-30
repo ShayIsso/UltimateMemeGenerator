@@ -13,6 +13,7 @@
 .meme-image {
   flex: 1 1 calc(100% - 10px);
   max-width: calc(100% - 10px);
+  transition: all 0.3s ease-in-out;
 }
 
 .meme-image img {

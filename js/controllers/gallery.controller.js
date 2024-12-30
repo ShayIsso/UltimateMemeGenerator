@@ -6,7 +6,6 @@ function onInit() {
 
     if (gSavedMemes.length > 0) {
         renderSaved()
-        console.log(gSavedMemes)
     }
 }
 

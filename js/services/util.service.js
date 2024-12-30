@@ -10,6 +10,12 @@ function makeId(length = 6) {
 	return id
 }
 
+function getRandomInt(min, max) {
+	const minCeiled = Math.ceil(min)
+	const maxFloored = Math.floor(max)
+	return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+  }
+
 function togglePage(page) {
 	if (page === 'editor') {
 		document.querySelector('.meme-editor-page').classList.remove('hidden')
